@@ -1,0 +1,540 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f7f9fa;
+  color: #222;
+}
+header {
+  background: #1e88e5;
+  color: #fff;
+  padding: 1rem 2rem;
+}
+
+header .phone_lang_switch {
+  display: flex;
+  align-items: center;
+  width: 355px;
+} 
+.word_right {
+  display: flex;
+  align-items: center;
+}
+.word_right .phone {
+  display: grid;
+  grid-row-gap: 5px;
+  font-size: 1rem;
+  margin-left:5px;
+  color: #000;
+}
+
+#lang-switch button {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  background: #fff;
+  color: #1e88e5;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 30px;
+}
+#lang-switch button.active {
+  background: #1565c0;
+  color: #fff;
+}
+main {
+  min-height: 100vh;
+  max-width: 1100px;
+  margin: 0.5rem auto 0.5rem auto;
+  padding: 0 1rem;
+}
+#carousel-section {
+  margin-bottom: 2rem;
+}
+#carousel {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  background: #e3eaf2;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-item {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.carousel-item.active {
+  display: flex;
+}
+.carousel-item img {
+  max-height: 140px;
+}
+#categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.category-btn {
+  padding: 0.5rem 1.2rem;
+  background: #fff;
+  border: 1px solid #1e88e5;
+  color: #1e88e5;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+}
+.category-btn.active, .category-btn:hover {
+  background: #1e88e5;
+  color: #fff;
+}
+#products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.product-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(30,136,229,0.08);
+  padding: 1rem;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+.product-card:hover {
+  box-shadow: 0 4px 16px rgba(30,136,229,0.16);
+}
+.product-card img {
+  max-width: 100%;
+  max-height: 100px;
+  margin-bottom: 0.5rem;
+}
+.product-card h3 {
+  margin: 0.5rem 0 0.2rem 0;
+  font-size: 1.1rem;
+}
+.product-card .price {
+  color: #e53935;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.product-card .view-btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.3rem 1rem;
+  background: #1e88e5;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+@media (max-width: 700px) {
+  main {
+    padding: 0 0.2rem;
+  }
+  #carousel {
+    height: 160px;
+  }
+  #products {
+    grid-template-columns: 1fr;
+  }
+}
+#site-footer {
+  background: #1e88e5;
+  color: #fff;
+  text-align: center;
+  padding: 1.2rem 0 1.2rem 0;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+.footer-content > div {
+  margin: 0.2rem 0;
+}
+
+/* 新版主导航和头部样式 */
+.main-header {
+  background: #fff;
+  border-bottom: 2px solid #1e88e5;
+  box-shadow: 0 2px 8px rgba(30,136,229,0.06);
+  padding: 0;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+.logo-area {
+  display: flex;
+  align-items: center;
+}
+.logo-img {
+  height: 48px;
+  margin-right: 12px;
+}
+#site-title {
+  font-size: 1.5rem;
+  color: #1e88e5;
+  font-weight: 600;
+  
+  font-family: Hei, Helvetica,'微软雅黑';
+}
+.main-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+.main-nav a {
+  color: #222;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.3rem 0.8rem;
+  border-radius: 3px;
+  transition: background 0.2s, color 0.2s;
+}
+.main-nav a.active, .main-nav a:hover {
+  background: #1e88e5;
+  color: #fff;
+}
+#lang-switch {
+  margin-left: 1.5rem;
+  
+  display: flex;
+}
+#lang-switch button {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  background: #e3eaf2;
+  color: #1e88e5;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
+#lang-switch button.active {
+  background: #1565c0;
+  color: #fff;
+}
+.main-content {
+  max-width: 1100px;
+  margin: 2rem auto 2rem auto;
+  padding: 0 1rem;
+}
+.about-section, .strengths-section, .contact-section {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(30,136,229,0.08);
+  padding: 2rem 2rem 1.5rem 2rem;
+  margin-bottom: 2rem;
+}
+#about-title, #strengths-title, #contact-title, #products-title {
+  color: #1e88e5;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+#about-desc, #contact-info, #strengths-list {
+  font-size: 1.15rem;
+  color: #333;
+}
+#strengths-list {
+  list-style: disc inside;
+  margin: 1rem 0 0 1rem;
+}
+#products-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+#products-list .product-card {
+  background: #f7f9fa;
+  border: 1px solid #e3eaf2;
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 1rem;
+  text-align: center;
+  transition: box-shadow 0.2s, border 0.2s;
+}
+#products-list .product-card:hover {
+  box-shadow: 0 4px 16px rgba(30,136,229,0.10);
+  border: 1px solid #1e88e5;
+}
+@media (max-width: 900px) {
+  .container, .main-content {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+  .main-content {
+    margin: 1rem auto 1rem auto;
+  }
+}
+@media (max-width: 700px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .main-nav {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .main-content {
+    padding: 0 0.2rem;
+  }
+  .about-section, .strengths-section, .contact-section {
+    padding: 1rem 0.5rem 1rem 0.5rem;
+  }
+}
+
+/* 联系我们页面仿padmavatichemtech.com/contact-us/ */
+.contact-section {
+  background: #f7f9fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(30,136,229,0.08);
+  padding: 2.5rem 2rem 2rem 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.contact-section h2 {
+  color: #0b3b6a;
+  font-size: 2.1rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.contact-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.contact-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(30,136,229,0.10);
+  padding: 2rem 2.2rem 1.5rem 2.2rem;
+  min-width: 220px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+}
+.contact-card:hover {
+  box-shadow: 0 4px 16px rgba(30,136,229,0.18);
+}
+.contact-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+[class^="contact-icon-"] {
+  color: #319dcb;
+}
+.contact-icon-phone {
+  background-image: url('../images/icon/phone.svg');
+}
+.contact-icon-email {
+  background-image: url('../images/icon/email.svg');
+}
+.contact-icon-address {
+  background-image: url('../images/icon/address.svg');
+}
+.contact-label {
+  font-size: 1.1rem;
+  color: #1e88e5;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.contact-value {
+  font-size: 1.15rem;
+  color: #222;
+  font-weight: 500;
+  word-break: break-all;
+}
+.contact-desc {
+  margin-top: 1.5rem;
+  font-size: 1.08rem;
+  color: #0b3b6a;
+  font-weight: 500;
+}
+@media (max-width: 900px) {
+  .contact-grid {
+    gap: 1rem;
+  }
+  .contact-card {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    min-width: 160px;
+  }
+}
+@media (max-width: 700px) {
+  .contact-section {
+    padding: 1.2rem 0.2rem 1rem 0.2rem;
+  }
+  .contact-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+}
+
+/* 首页 Company Profile & Our Products & Services 美化升级 */
+.company-profile-section, .products-services-section {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(30,136,229,0.08);
+  padding: 2.5rem 2rem 2rem 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.company-profile-section h2, .products-services-section h2 {
+  color: #0b3b6a;
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: left;
+  border-left: 6px solid #1e88e5;
+  padding-left: 1rem;
+  background: linear-gradient(90deg, #e3eaf2 0%, #fff 100%);
+}
+.company-profile-content, .products-services-content {
+  padding-left: 0.5rem;
+}
+.company-profile-content ul, .products-services-content ul {
+  margin: 0 0 0 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+.company-profile-content li, .products-services-content li {
+  font-size: 1.08rem;
+  color: #1e88e5;
+  margin-bottom: 1.1rem;
+  line-height: 1.7;
+  background: #f7f9fa;
+  border-radius: 6px;
+  padding: 0.7rem 1.2rem 0.7rem 1.5rem;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(30,136,229,0.04);
+  border-left: 4px solid #1e88e5;
+  transition: box-shadow 0.2s, border 0.2s;
+}
+.company-profile-content li strong, .products-services-content li strong {
+  color: #0b3b6a;
+  font-weight: 600;
+}
+.company-profile-content li::before, .products-services-content li::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #1e88e5;
+  border-radius: 50%;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.company-profile-content p, .products-services-content p {
+  font-size: 1.13rem;
+  color: #333;
+  margin-bottom: 1.2rem;
+  line-height: 1.7;
+  padding-left: 0.2rem;
+}
+@media (max-width: 900px) {
+  .company-profile-section, .products-services-section {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+  }
+  .company-profile-section h2, .products-services-section h2 {
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+  }
+  .company-profile-content li, .products-services-content li {
+    padding: 0.5rem 0.5rem 0.5rem 1.2rem;
+  }
+}
+
+/* 首页 Company Profile 卡片式flex布局 */
+.company-profile-content ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin: 0 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.company-profile-content li {
+  flex: 1 1 22%;
+  min-width: 220px;
+  max-width: 25%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  background: #f7f9fa;
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem 1.1rem 1.5rem;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(30,136,229,0.06);
+  border-left: 4px solid #1e88e5;
+  transition: box-shadow 0.2s, border 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 1.08rem;
+  color: #1e88e5;
+  line-height: 1.7;
+}
+.company-profile-content li strong {
+  color: #0b3b6a;
+  font-weight: 600;
+}
+.company-profile-content li::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #1e88e5;
+  border-radius: 50%;
+  position: absolute;
+  left: 12px;
+  top: 1.1rem;
+}
+@media (max-width: 1100px) {
+  .company-profile-content li {
+    min-width: 180px;
+    max-width: 48%;
+    flex-basis: 48%;
+  }
+}
+@media (max-width: 700px) {
+  .company-profile-content ul {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .company-profile-content li {
+    min-width: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+    padding: 0.8rem 0.7rem 0.8rem 1.2rem;
+  }
+}

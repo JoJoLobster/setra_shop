@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "phone"; /* Project id  */
+  src: url('phone.ttf?t=1706779655242') format('truetype');
+}
+.icon-dh:before {
+  content: "\e60e";
+}
+.iconPhone {
+  font-family: "phone" !important;
+  font-size: 45px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 8px 0px 5px 0px;
+  color:  #319dcb;
+}
+
+@media screen and (max-width: 600px) {
+  .iconPhone {
+    font-size: 1.32rem;
+    display:none;
+  }
+}
+
+
