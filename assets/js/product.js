@@ -1,6 +1,6 @@
 let products = [];
 let categories = [];
-let lang = localStorage.getItem('lang') || 'zh';
+let langDetailPage = localStorage.getItem('lang') || 'zh';
 let texts = {
   zh: {
     siteTitle: '深圳市西特新环保材料有限公司',
@@ -38,7 +38,7 @@ function getQueryId() {
 }
 
 function renderDetail() {
-  document.getElementById('site-title').textContent = texts[lang].siteTitle;
+  document.getElementById('site-title').textContent = texts[langDetailPage].siteTitle;
   const id = getQueryId();
   const prod = products.find(p => String(p.id) === id);
   const detailDiv = document.getElementById('product-detail');
@@ -46,31 +46,50 @@ function renderDetail() {
     detailDiv.innerHTML = `<div style='padding:2rem;text-align:center;'>${texts[lang].notFound}</div>`;
     return;
   }
-  const cat = categories.find(c => c.id === prod.category);
+  const cat = categories.filter(c => c.id === prod.category)[0];
   const img = prod.image || 'assets/images/' + prod.id + '_thumb.png';
+  
   detailDiv.innerHTML = `
-    <div class="product-card" style="max-width:400px;margin:2rem auto;">
-      <img src="${img}" alt="${prod[lang + '_name']}" style="max-height:160px;">
-      <h3>${prod[lang + '_name']}</h3>
-      <div class="price">${texts[lang].price}：￥${prod.price} ${texts[lang].yuan}</div>
-      <div style="margin:0.5rem 0;">${texts[lang].category}：${cat ? cat[lang] : ''}</div>
+    <div class="product-detail-container">
+      <div class="product-detail-left">
+        <div class="product-image-container">
+          <img src="${img}" alt="${prod[langDetailPage + '_name']}" class="product-detail-image">
+        </div>
+      </div>
+      <div class="product-detail-right">
+        <div class="product-info">
+          <h1 class="product-title">${prod[langDetailPage + '_name']}</h1>
+          <div class="product-category">
+            <span class="info-label">${texts[langDetailPage].category}:</span>
+            <span class="info-value">${cat ? cat[langDetailPage] : ''}</span>
+          </div>
+          <div class="product-price">
+            <span class="info-label">${texts[langDetailPage].price}:</span>
+            <span class="price-value">￥${prod.price} ${texts[langDetailPage].yuan}</span>
+          </div>
+          <div class="product-description">
+            <h3>产品描述</h3>
+            <p>${prod[langDetailPage + '_description'] || '暂无详细描述'}</p>
+          </div>
+          <div class="product-specifications">
+            <h3>产品规格</h3>
+            <ul>
+              <li><strong>产品编号:</strong> <span>${prod.id}</span></li>
+              <li><strong>包装规格:</strong> <span>${prod.package || '标准包装'}</span></li>
+              <li><strong>储存条件:</strong> <span>${prod.storage || '常温储存'}</span></li>
+              <li><strong>保质期:</strong> <span>${prod.shelf_life || '长期有效'}</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   `;
 }
 
 // 多语言切换
-const langBtns = document.querySelectorAll('#lang-switch button');
 langBtns.forEach(btn => {
-  btn.onclick = () => {
-    lang = btn.getAttribute('data-lang');
-    localStorage.setItem('lang', lang);
+  btn.addEventListener('click', () => {
+    langDetailPage = btn.getAttribute('data-lang');
     renderDetail();
-  };
-});
-function setActiveLangBtn() {
-  langBtns.forEach(btn => {
-    if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
-    else btn.classList.remove('active');
   });
-}
-setActiveLangBtn(); 
+});

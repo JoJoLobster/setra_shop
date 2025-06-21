@@ -1,9 +1,21 @@
 const products_all_data =
 {
   "categories": [
-    {"id": "raw", "zh": "原料", "en": "Raw Materials"},
-    {"id": "solvent", "zh": "溶剂", "en": "Solvents"},
-    {"id": "additive", "zh": "添加剂", "en": "Additives"}
+    
+    
+    
+    
+    
+    
+    
+    ,
+    {"id": "NoAirPlating", "zh": '无气电镀', "en": 'No-air Plating'},
+    {"id": "HardwarePlatingSeries", "zh": '五金电镀系列',"en": 'Hardware Plating Series'},
+    {"id": "PlasticPlatingSeries", "zh": '塑胶电镀系列',"en": 'Plastic Plating Series'},
+    {"id": "PCB/FPCPlating", "zh": 'PCB/FPC电镀',"en": 'PCB/FPC Plating'},
+    {"id": "IntermediateSeries", "zh": '中间体系列',"en": 'Intermediate Series'},
+    {"id": "SpecialAdditive", "zh": '特殊添加剂',"en": 'Special Additive'},
+    {"id": "PostTreatmentProtectionSeries", "zh": '后处理保护系列', "en": 'Post-treatment Protection Series'}
   ],
   "products": [
     {

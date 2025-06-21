@@ -21,12 +21,7 @@ categories = products_all_data.categories;
 renderAll();
 
 function renderAll(selectedCategory = 'all') {
-  renderTexts();
   renderCarousel();
-}
-
-function renderTexts() {
-  document.getElementById('site-title').textContent = langData[langMainPage].siteTitle;
 }
 
 function renderCarousel() {

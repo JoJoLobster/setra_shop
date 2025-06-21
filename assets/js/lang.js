@@ -9,7 +9,7 @@ const langData = {
     aboutTitle: '公司简介',
     aboutDesc: '深圳市西特新环保材料有限公司是一家专注于化工新材料研发、生产与销售的高新技术企业，致力于为客户提供高品质的化工产品和专业的技术服务。',
     strengthsTitle: '我们的强项',
-    strengthsList: ['专业的研发团队', '高品质的产品保障', '完善的售后服务', '丰富的行业经验'],
+    strengthsList: ['专注镀铜研发', '高品质的产品保障', '完善的售后服务', '丰富的行业经验'],
     contactTitle: '联系我们',
     contactPhoneLabel: '电话',
     contactEmailLabel: '邮箱',
@@ -31,12 +31,13 @@ const langData = {
     ],
     homeServicesTitle: '我们的产品与服务',
     homeServicesList: [
-      '电镀染料',
-      '生物染色剂',
-      'PH指示剂',
-      '染发剂',
-      '沙黄系列',
-      '实验室化学品'
+        '无气电镀',
+        '五金电镀系列',
+        '塑胶电镀系列',
+        'PCB/FPC电镀',
+        '中间体系列',
+        '特殊添加剂',
+        '后处理保护系列'
     ],
     homeServicesContent: '我们自豪地介绍自己是西特新环保材料有限公司出口事业部，是电镀染料、生物染色剂、PH指示剂、染发剂、沙黄系列等领先制造商之一，拥有设备齐全的工厂和专业的化学师团队。',
   },
@@ -50,7 +51,7 @@ const langData = {
     aboutTitle: 'Company Profile',
     aboutDesc: 'Shenzhen SETRA New Environmental Protection Material Co., Ltd. is a high-tech enterprise focusing on R&D, production and sales of new chemical materials, committed to providing customers with high-quality chemical products and professional technical services.',
     strengthsTitle: 'Our Strengths',
-    strengthsList: ['Professional R&D Team', 'High Quality Assurance', 'Comprehensive After-sales Service', 'Rich Industry Experience'],
+    strengthsList: ['Focus on copper plating research and development', 'High Quality Assurance', 'Comprehensive After-sales Service', 'Rich Industry Experience'],
     contactTitle: 'Contact Us',
     contactPhoneLabel: 'Phone',
     contactEmailLabel: 'Email',
@@ -63,23 +64,24 @@ const langData = {
     categoriesTitle: 'Categories',
     view: 'View Details',
     homeProfileTitle: 'Company Profile',
-    homeProfileContent: 'We introduce ourselves as an export division of ARTI CHEMICALS, who is the one of the leading manufacturer of dyes from ELECTROPLATING DYES, Biological stains, PH Indicators, Hair Colour, safranine series. Under well equiped plant with qualified chemists.',
+    homeProfileContent: 'We introduce ourselves as an export division of SETRA, who is the one of the leading manufacturer of dyes from ELECTROPLATING DYES, Biological stains, PH Indicators, Hair Colour, safranine series. Under well equiped plant with qualified chemists.',
     homeProfileList: [
       '<strong>Year of Establishment:</strong> 2009',
-      '<strong>Primary Business:</strong> The ARTI CHEMICALS has been recognized in the field of Laboratory Chemicals since April 2009. During this period we had to persuade every customer for a quality product.',
+      '<strong>Primary Business:</strong> The SETRA has been recognized in the field of Laboratory Chemicals since April 2009. During this period we had to persuade every customer for a quality product.',
       '<strong>Annual Turnover:</strong> Detailed quality products with over 100 products. The technical advancement of the cervical product specification has been achieved and we have made significant progress.',
       '<strong>Market Covered:</strong> During this period we had to persuade every customer for a quality product. As the business expanded in India and different countries, it was difficult to inform all customers about different products. After that, we decided to prepare a book from where our valued customers get information about our products.'
     ],
     homeServicesTitle: 'Our Products & Services',
     homeServicesList: [
-      'Electroplating Dyes',
-      'Biological Stains',
-      'PH Indicators',
-      'Hair Colour',
-      'Safranine Series',
-      'Laboratory Chemicals'
+      'No-air Plating',
+      'Hardware Plating Series',
+      'Plastic Plating Series',
+      'PCB/FPC Plating',
+      'Intermediate Series',
+      'Special Additive',
+      'Post-treatment Protection Series',
     ],
-    homeServicesContent: 'We introduce ourselves as an export division of ARTI CHEMICALS, who is the one of the leading manufacturer of dyes from ELECTROPLATING DYES, Biological stains, PH Indicators, Hair Colour, safranine series. Under well equiped plant with qualified chemists.',
+    homeServicesContent: 'We introduce ourselves as an export division of SETRA, who is the one of the leading manufacturer of dyes from ELECTROPLATING DYES, Biological stains, PH Indicators, Hair Colour, safranine series. Under well equiped plant with qualified chemists.',
   }
 };
 
@@ -91,7 +93,10 @@ function setLang(newLang) {
 }
 function renderLang() {
   const d = langData[lang];
-  if(document.getElementById('site-title')) document.getElementById('site-title').textContent = d.siteTitle;
+  let domSiteTitle = document.getElementById('site-title');
+  if(domSiteTitle) {
+    domSiteTitle.textContent = d.siteTitle;
+  }
   if(document.getElementById('about-title')) document.getElementById('about-title').textContent = d.aboutTitle;
   if(document.getElementById('about-desc')) document.getElementById('about-desc').textContent = d.aboutDesc;
   if(document.getElementById('strengths-title')) document.getElementById('strengths-title').textContent = d.strengthsTitle;
@@ -113,7 +118,7 @@ function renderLang() {
   // 导航
   const nav = document.querySelector('.main-nav');
   if(nav) {
-    const navText = [d.home, d.about, d.products, d.strengths, d.contact];
+    const navText = [d.home, d.products, d.strengths, d.about, d.contact];
     for(let i=0; i<nav.children.length; i++) {
       nav.children[i].textContent = navText[i];
     }
@@ -133,6 +138,11 @@ function renderLang() {
           <div class="contact-icon contact-icon-email"></div>
           <div class="contact-label">${d.contactEmailLabel}</div>
           <div class="contact-value">${d.contactEmail}</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon contact-icon-address"></div>
+          <div class="contact-label">whatsApp</div>
+          <div class="contact-value">Link</div>
         </div>
         <div class="contact-card">
           <div class="contact-icon contact-icon-address"></div>
@@ -160,6 +170,7 @@ function renderLang() {
       });
     }
   }
+
   if(document.querySelector('.products-services-section')) {
     const title = document.querySelector('.products-services-section h2');
     if(title) title.textContent = d.homeServicesTitle;

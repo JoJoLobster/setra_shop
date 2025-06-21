@@ -53,26 +53,32 @@ function renderProducts(selected) {
   const prodDiv = document.getElementById('products');
   prodDiv.innerHTML = '';
   let filtered = selected === 'all' ? products : products.filter(p => p.category === selected);
-  filtered.forEach(prod => {
-    const card = document.createElement('div');
-    const imgUri = getImgUriByProduct(prod);
-    card.className = 'product-card';
-    card.innerHTML = `
-      <img src="${imgUri}" alt="${prod[langProductsPage + '_name']}">
-      <h3>${prod[langProductsPage + '_name']}</h3>
-      <div class="price">￥${prod.price}</div>
-      <a class="view-btn" href="product.html?id=${prod.id}">${langData[langProductsPage].view}</a>
-    `;
-    prodDiv.appendChild(card);
-  });
+  if(filtered.length) {
+    filtered.forEach(prod => {
+      const card = document.createElement('div');
+      const imgUri = getImgUriByProduct(prod);
+      card.className = 'product-card';
+      card.innerHTML = `
+        <div class="product-card-inner">
+          <img src="${imgUri}" alt="${prod[langProductsPage + '_name']}">
+          <h3>${prod[langProductsPage + '_name']}</h3>
+          <div class="price">￥${prod.price}</div>
+        </div>
+        <a class="view-btn" href="product.html?id=${prod.id}">${langData[langProductsPage].view}</a>
+      `;
+      prodDiv.appendChild(card);
+    });
+  } else {
+    prodDiv.innerHTML = `<img src="assets/images/icon/NotFound.png" alt="">`;
+  }
 }
 
 
 // 多语言切换
 (document.querySelectorAll('#lang-switch button')).forEach(btn => {
-  btn.onclick = () => {
+  btn.addEventListener('click', () => {
     langProductsPage = btn.getAttribute('data-lang');
     localStorage.setItem('lang', langProductsPage);
     renderAll();
-  };
+  });
 });
