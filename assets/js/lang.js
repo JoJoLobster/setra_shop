@@ -93,10 +93,6 @@ function setLang(newLang) {
 }
 function renderLang() {
   const d = langData[lang];
-  let domSiteTitle = document.getElementById('site-title');
-  if(domSiteTitle) {
-    domSiteTitle.textContent = d.siteTitle;
-  }
   if(document.getElementById('about-title')) document.getElementById('about-title').textContent = d.aboutTitle;
   if(document.getElementById('about-desc')) document.getElementById('about-desc').textContent = d.aboutDesc;
   if(document.getElementById('strengths-title')) document.getElementById('strengths-title').textContent = d.strengthsTitle;
@@ -115,14 +111,7 @@ function renderLang() {
     info.innerHTML = `<div><strong>${d.contactPhone}</strong>13724351021 / 0755-27782265</div><div><strong>${d.contactEmail}</strong>info@setra-ep.com</div><div><strong>${d.contactAddr}</strong>深圳市松岗镇江边工业一路9号</div>`;
   }
   if(document.getElementById('products-title')) document.getElementById('products-title').textContent = d.productsTitle;
-  // 导航
-  const nav = document.querySelector('.main-nav');
-  if(nav) {
-    const navText = [d.home, d.products, d.strengths, d.about, d.contact];
-    for(let i=0; i<nav.children.length; i++) {
-      nav.children[i].textContent = navText[i];
-    }
-  }
+
   // 联系我们卡片
   if(document.querySelector('.contact-section')) {
     if(document.getElementById('contact-title')) document.getElementById('contact-title').textContent = d.contactTitle;
@@ -187,6 +176,10 @@ function renderLang() {
     if(p) p.textContent = d.homeServicesContent;
   }
 }
+
+
+
+
 // 绑定按钮
 const langBtns = document.querySelectorAll('#lang-switch button');
 langBtns.forEach(btn => {
@@ -202,4 +195,4 @@ function setActiveLangBtn() {
   });
 }
 setActiveLangBtn();
-renderLang(); 
+renderLang();
