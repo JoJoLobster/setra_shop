@@ -16,24 +16,32 @@ var carouselTimer = null;
 //     renderAll();
 //   });
 
-products = products_all_data.products;
-categories = products_all_data.categories;
-renderAll();
 
-function renderAll(selectedCategory = 'all') {
-  renderCarousel();
-}
+var carouselItems = [
+  {
+    img: 'assets/images/home/bg-2.jpg',
+    link: '#'
+  },
+  {
+    img: 'assets/images/home/bg-4.jpg',
+    link: '#'
+  },
+  {
+    img: 'assets/images/home/bg-6.jpg',
+    link: '#'
+  }
 
+];
 function renderCarousel() {
   const carousel = document.getElementById('carousel');
   carousel.innerHTML = '';
-  if (!products.length) return;
-  const showCount = 3;
-  const total = Math.min(5, products.length); // 最多轮播5个商品
+  if (!carouselItems.length) return;
+  const showCount = 1;
+  const total = Math.min(5, carouselItems.length); // 最多轮播5个商品
   let group = [];
   for (let i = 0; i < showCount; i++) {
     const idx = (carouselIndex + i) % total;
-    group.push(products[idx]);
+    group.push(carouselItems[idx]);
   }
   const groupDiv = document.createElement('div');
   groupDiv.style.display = 'flex';
@@ -46,9 +54,9 @@ function renderCarousel() {
     item.className = 'carousel-item active';
     item.style.flex = '1 1 0';
     item.style.margin = '0 10px';
-    const imgUri = getImgUriByProduct(prod);
+    const imgUri = prod.img;
     item.innerHTML = `
-      <img src="${imgUri}" alt="${prod[langMainPage + '_name']}">
+      <img src="${imgUri}" alt="">
     `;
     groupDiv.appendChild(item);
   });
@@ -57,14 +65,16 @@ function renderCarousel() {
   carouselTimer = setInterval(() => {
     carouselIndex = (carouselIndex + showCount) % total;
     renderCarousel();
-  }, 3000);
+  }, 3500);
 }
 
 
 // 多语言切换
 (document.querySelectorAll('#lang-switch button')).forEach(btn => {
   btn.addEventListener('click', () => {
-
-    renderAll();
+    renderCarousel();
   });
 });
+
+
+renderCarousel();

@@ -22,7 +22,7 @@ const langData = {
     categoriesTitle: '商品分类',
     view: '查看详情',
     homeProfileTitle: '公司简介',
-    homeProfileContent: '我们自豪地介绍自己是西特新环保材料有限公司出口事业部，是电镀染料、生物染色剂、PH指示剂、染发剂、沙黄系列等领先制造商之一，拥有设备齐全的工厂和专业的化学师团队。',
+    homeProfileContent: '我们自豪地介绍自己是西特新环保材料有限公司出口事业部，是电镀染料、添加剂、保护剂系列等领先制造商之一，拥有设备齐全的工厂和专业的化学师团队。',
     homeProfileList: [
       '<strong>成立年份：</strong> 2009',
       '<strong>主营业务：</strong> 西特新环保材料有限公司自2009年4月以来在实验室化学品领域享有盛誉。期间我们始终坚持为每一位客户提供高品质产品。',
@@ -39,7 +39,6 @@ const langData = {
         '特殊添加剂',
         '后处理保护系列'
     ],
-    homeServicesContent: '我们自豪地介绍自己是西特新环保材料有限公司出口事业部，是电镀染料、生物染色剂、PH指示剂、染发剂、沙黄系列等领先制造商之一，拥有设备齐全的工厂和专业的化学师团队。',
   },
   en: {
     home: 'Home', 
@@ -81,13 +80,14 @@ const langData = {
       'Special Additive',
       'Post-treatment Protection Series',
     ],
-    homeServicesContent: 'We introduce ourselves as an export division of SETRA, who is the one of the leading manufacturer of dyes from ELECTROPLATING DYES, Biological stains, PH Indicators, Hair Colour, safranine series. Under well equiped plant with qualified chemists.',
   }
 };
 
 var lang = localStorage.getItem('lang') || 'zh';
+var pageName = 'index';
+
 function setLang(newLang) {
-  lang = newLang;
+  lang = newLang??(localStorage.getItem('lang') || 'zh');
   localStorage.setItem('lang', lang);
   renderLang();
 }
@@ -129,7 +129,7 @@ function renderLang() {
           <div class="contact-value">${d.contactEmail}</div>
         </div>
         <div class="contact-card">
-          <div class="contact-icon contact-icon-address"></div>
+          <div class="contact-icon"><img src="assets/images/c/whatsapp-logo.svg"/></div>
           <div class="contact-label">whatsApp</div>
           <div class="contact-value">Link</div>
         </div>
@@ -172,27 +172,8 @@ function renderLang() {
         ul.appendChild(li);
       });
     }
-    const p = document.querySelector('.products-services-content p');
-    if(p) p.textContent = d.homeServicesContent;
   }
 }
 
 
 
-
-// 绑定按钮
-const langBtns = document.querySelectorAll('#lang-switch button');
-langBtns.forEach(btn => {
-  btn.onclick = () => {
-    setLang(btn.getAttribute('data-lang'));
-    setActiveLangBtn();
-  }
-});
-function setActiveLangBtn() {
-  langBtns.forEach(btn => {
-    if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
-    else btn.classList.remove('active');
-  });
-}
-setActiveLangBtn();
-renderLang();

@@ -7,8 +7,8 @@ body {
   padding: 0;
   background: #f7f9fa;
   color: #222;
-  background-color: #2786df;
-  background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+  /* background-color: #2786df;
+  background-image: url("https://www.transparenttextures.com/patterns/cartographer.png"); */
 
 }
 img {
@@ -66,14 +66,12 @@ main {
 }
 #carousel-section {
   margin-bottom: 2rem;
-  background-color: #00cc88;
-  background-image: url("https://www.transparenttextures.com/patterns/diagmonds-light.png");
+  /* background-color: #00cc88;
+  background-image: url("https://www.transparenttextures.com/patterns/diagmonds-light.png"); */
 }
 #carousel {
   position: relative;
   width: 100%;
-  height: 160px;
-  border-radius: 10px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -92,7 +90,6 @@ main {
   display: flex;
 }
 .carousel-item img {
-  max-height: 140px;
 }
 
 
@@ -172,7 +169,10 @@ main {
   }
 }
 #site-footer {
-  background: #1e88e5;
+  /* background: #1e88e5; */
+  
+  background-size: cover;
+  background-image: url(../images/c/map-3.jpg);
   color: #fff;
   text-align: center;
   padding: 1.2rem 0 1.2rem 0;
@@ -183,6 +183,12 @@ main {
   margin: 0.2rem 0;
 }
 
+
+.container {
+  padding: 0.5rem 1rem;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e7e3d6;
+}
 /* 新版主导航和头部样式 */
 
 .main-header {
@@ -192,15 +198,28 @@ main {
 }
 
 .main-header .container{
-  /* background: #fff; */
+  background: #fff;
+  padding:0;
 }
-.container {
+.logo-header-wrapper{
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
-  background-color: #f9f9f9;
-  border-top: 1px solid #e7e3d6;
+  min-width: var(--mainAreaWidth);
+}
+.logo-header{
+  min-width: var(--mainAreaWidth);
+  height: 85px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .logo-area {
   display: flex;
@@ -225,10 +244,12 @@ main {
   clear: none;
   float: left;
   max-height: none;
+  padding: 5px;
+  background-color: #f9f9f9;
 }
 .main-nav {
   max-width:  var(--mainAreaWidth);
-  padding: 15px;
+  padding: 5px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -430,9 +451,20 @@ main {
 .company-profile-section h2, .products-services-section h2 {
   font-size: 1.2rem;
   padding: 0px 0 0px 10px;
+  margin: 3px 0;
   color: #000;
   font-weight: 500;
   background: linear-gradient(90deg, #e3eaf2 0%, #fff 100%);
+}
+.company-profile-section h2:after, .products-services-section h2:after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width:160px;
+  background-color: #319dcb;
+  height: 2px;
+  top: 13px;
+  left: 3%;
 }
 .company-profile-content, .products-services-content {
   padding-left: 0.5rem;
@@ -491,15 +523,32 @@ main {
   color: #989898;
   font-weight: 300;
   font-size: 0.9rem;
+  border: 1px solid #ddd;
   border-bottom: 2px solid #319dcb;
   box-shadow: 0 1px 4px rgba(30,136,229,0.04);
   transition: box-shadow 0.2s, border 0.2s;
 }
 
-.company-profile-content li:hover {
+/* .company-profile-content li:hover {
   background: #1e88e5;
   color: #fff;
+} */
+.company-profile-content li:hover:after {
+  transform: translateY(0%);
 }
+.company-profile-content li:after {
+  content: '';
+  position: absolute;
+  transform: translateY(-100%);
+  height: 100%;
+  width: 100%;
+  background-color: #f5f3f0;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: 0.5s;
+}
+
 .company-profile-content li strong {
   color: #0b3b6a;
   font-size: 1.1rem;
@@ -716,6 +765,25 @@ main {
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(30,136,229,0.3);
+}
+.page-title-section{
+  width: 100%;
+  height: 260px;
+  background-image: url('../images/c/page_title.webp');
+  background-color: #282828;
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page-title-section .title-wrapper{
+  font-size: 30px;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  min-width: var(--mainAreaWidth);
 }
 
 /* 响应式设计 */
