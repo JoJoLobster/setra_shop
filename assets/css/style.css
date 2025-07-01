@@ -1,6 +1,9 @@
 :root {
   --mainAreaWidth: 1300px;
 }
+.highlight {
+  color: #ed6d46;
+}
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   margin: 0;
@@ -43,6 +46,7 @@ header .phone_lang_switch {
   background: #e3eaf2;
   border: 1px solid #b6b6b6;
   border-radius: 3px;
+  min-width: 138px;
 }
 #lang-switch button {
   padding: 0.3rem 0.8rem;
@@ -104,10 +108,9 @@ main {
   padding: 0.5rem 0.8rem;
   background: #ffffffe3;
   border: none;
-  color: #1e88e5;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.98rem;
   font-weight: 600;
   transition: background 0.2s, color 0.2s;
 }
@@ -215,7 +218,6 @@ main {
 }
 .logo-header{
   min-width: var(--mainAreaWidth);
-  height: 85px;
   
   display: flex;
   align-items: center;
@@ -468,6 +470,7 @@ main {
 }
 .company-profile-content, .products-services-content {
   padding-left: 0.5rem;
+  z-index: 1;
 }
 .company-profile-content li strong, .products-services-content li strong {
   color: #0b3b6a;
@@ -479,6 +482,7 @@ main {
   margin-bottom: 1.2rem;
   line-height: 1.7;
   padding-left: 0.2rem;
+  z-index: 1;
 }
 @media (max-width: 900px) {
   .company-profile-section, .products-services-section {
@@ -521,20 +525,24 @@ main {
 
 
   color: #989898;
+  font-family: 'Poppins, sans-serif';
   font-weight: 300;
   font-size: 0.9rem;
   border: 1px solid #ddd;
   border-bottom: 2px solid #319dcb;
   box-shadow: 0 1px 4px rgba(30,136,229,0.04);
   transition: box-shadow 0.2s, border 0.2s;
+  z-index: 1;
+  
+  overflow: hidden;
 }
 
-/* .company-profile-content li:hover {
-  background: #1e88e5;
-  color: #fff;
-} */
+.company-profile-content li:hover {
+  color: #000;
+}
 .company-profile-content li:hover:after {
   transform: translateY(0%);
+  color: #989898;
 }
 .company-profile-content li:after {
   content: '';
@@ -787,7 +795,13 @@ main {
 }
 
 /* 响应式设计 */
-@media (max-width: 1024px) {
+@media (max-width: 1300px) {
+  #site-title{
+    font-size: 1rem;
+  }
+  .logo-header {
+    min-width: unset;
+  }
   .product-detail-container {
     flex-direction: column;
     gap: 2rem;
@@ -805,6 +819,7 @@ main {
 }
 
 @media (max-width: 768px) {
+  
   .product-detail-container {
     margin: 1rem;
     padding: 1rem;

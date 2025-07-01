@@ -7,7 +7,13 @@ const langData = {
     strengths: '我们的强项',
     contact: '联系我们',
     aboutTitle: '公司简介',
-    aboutDesc: '深圳市西特新环保材料有限公司是一家专注于化工新材料研发、生产与销售的高新技术企业，致力于为客户提供高品质的化工产品和专业的技术服务。',
+    aboutDesc: `
+        <p>深圳市西特新环保材料有限公司是专业电镀添加剂研发生产单位，从事电子、五金、塑胶、PCB、FPC电镀化学镀工艺全制程配套添加剂；铜、镍、锡、银、金、等添加剂,保护剂,提供特殊电镀工艺及产品配方开发。</p>
+        <p>公司特色产品：<span class="highlight">碱铜、无氰碱铜、焦铜、酸铜</span>(原装德系酸铜、原装日系酸铜，均可代替德国日本品牌酸铜），公司研发无阳极泥酸铜添加剂均可应用于五金、塑胶、PCB\FPC电镀，节约阳极消耗、节约生产成本、提高生产效率、延长生产维护周期。无氰碱铜完全取代氰化物效果显著性能稳定。</p>
+        <p>我们热忱期待着为您提供优质的产品和专业的服务！本着用户至上、信誉第一的宗旨，不断创新、与时俱进的理念热服务于每一位客户。</p>
+        <p>深圳西特专注镀铜研发！ </p>
+        <p>产品详情欢迎致电+086-0755-27782265，新产品开发技术支持请致电+086 13724351021</p>
+    `,
     strengthsTitle: '我们的强项',
     strengthsList: ['专注镀铜研发', '高品质的产品保障', '完善的售后服务', '丰富的行业经验'],
     contactTitle: '联系我们',
@@ -48,7 +54,14 @@ const langData = {
     strengths: 'Our Strengths',
     contact: 'Contact Us',
     aboutTitle: 'Company Profile',
-    aboutDesc: 'Shenzhen SETRA New Environmental Protection Material Co., Ltd. is a high-tech enterprise focusing on R&D, production and sales of new chemical materials, committed to providing customers with high-quality chemical products and professional technical services.',
+    aboutDesc: `
+    <p>Shenzhen Xite New Environmental Protection Materials Co., Ltd. is a specialized unit for the research and production of electroplating additives, providing full-process additives for electroplating and chemical plating processes in electronics, hardware, plastics, PCB, and FPC. The company offers additives for copper, nickel, tin, silver, gold, and other metals, including protective agents and special electroplating process and product formula development.</p>
+    <p>Key products: <span class="highlight">alkaline copper, cyanide-free alkaline copper, cuprous chloride, acid copper (original German acid copper and original Japanese acid copper, both can replace German and Japanese brand acid copper)</span>. The company's research on cyanide-free acid copper additives can be applied to hardware, plastics, PCB/FPC electroplating, saving anode consumption, reducing production costs, improving production efficiency, and extending maintenance cycles. Cyanide-free alkaline copper effectively replaces cyanides with significant performance stability.</p>
+    <p>We warmly look forward to providing you with high-quality products and professional services! Adhering to the principle of user first and credibility paramount, we continuously innovate and keep pace with the times, serving every customer wholeheartedly.</p>
+    <p>Shenzhen Xite focuses on copper plating research!</p>
+    <p>For more product details, please call +086-0755-27782265. For new product development and technical support, please call +086 13724351021.</p>
+
+    `,
     strengthsTitle: 'Our Strengths',
     strengthsList: ['Focus on copper plating research and development', 'High Quality Assurance', 'Comprehensive After-sales Service', 'Rich Industry Experience'],
     contactTitle: 'Contact Us',
@@ -94,7 +107,10 @@ function setLang(newLang) {
 function renderLang() {
   const d = langData[lang];
   if(document.getElementById('about-title')) document.getElementById('about-title').textContent = d.aboutTitle;
-  if(document.getElementById('about-desc')) document.getElementById('about-desc').textContent = d.aboutDesc;
+
+  if(document.getElementById('about-desc')) document.getElementById('about-desc').innerHTML = d.aboutDesc;
+
+
   if(document.getElementById('strengths-title')) document.getElementById('strengths-title').textContent = d.strengthsTitle;
   if(document.getElementById('strengths-list')) {
     const ul = document.getElementById('strengths-list');
