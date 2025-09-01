@@ -1,14 +1,6 @@
 const products_all_data =
 {
   "categories": [
-    
-    
-    
-    
-    
-    
-    
-    ,
     {"id": "NoAirPlating", "zh": '无气电镀', "en": 'No-air Plating'},
     {"id": "HardwarePlatingSeries", "zh": '五金电镀系列',"en": 'Hardware Plating Series'},
     {"id": "PlasticPlatingSeries", "zh": '塑胶电镀系列',"en": 'Plastic Plating Series'},
@@ -20,7 +12,7 @@ const products_all_data =
   "products": [
     {
       "id": 293,
-      "category": "raw",
+      "category": "IntermediateSeries",
       "image": "",
       "price": 1200,
       "zh_name": "碱铜中间体",
@@ -28,7 +20,7 @@ const products_all_data =
     },
     {
       "id": 307,
-      "category": "raw",
+      "category": "SpecialAdditive",
       "image": "",
       "price": 980,
       "zh_name": "挂镀镍添加剂",
@@ -36,7 +28,7 @@ const products_all_data =
     },
     {
       "id": 309,
-      "category": "solvent",
+      "category": "SpecialAdditive",
       "image": "",
       "price": 1500,
       "zh_name": "VCP酸铜添加剂",
@@ -44,7 +36,7 @@ const products_all_data =
     },
     {
       "id": 317,
-      "category": "solvent",
+      "category": "HardwarePlatingSeries",
       "image": "",
       "price": 2100,
       "zh_name": "镀锌封闭剂",
@@ -52,7 +44,7 @@ const products_all_data =
     },
     {
       "id": 325,
-      "category": "additive",
+      "category": "HardwarePlatingSeries",
       "image": "",
       "price": 800,
       "zh_name": "填孔镀铜",
@@ -60,7 +52,7 @@ const products_all_data =
     },
     {
       "id": 326,
-      "category": "additive",
+      "category": "SpecialAdditive",
       "image": "",
       "price": 1350,
       "zh_name": "线路板酸铜添加剂",
@@ -68,7 +60,7 @@ const products_all_data =
     },
     {
       "id": 327,
-      "category": "additive",
+      "category": "SpecialAdditive",
       "image": "",
       "price": 1350,
       "zh_name": "银保护剂",
