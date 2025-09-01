@@ -21,6 +21,9 @@ img {
 header {
   padding: 1rem 2rem;
 }
+a {
+  text-decoration: none;
+}
 
 header .phone_lang_switch {
   display: flex;
@@ -43,20 +46,31 @@ header .phone_lang_switch {
 #lang-switch {
   margin-left: 1rem;
   display: flex;
+  min-width: 138px;
   background: #e3eaf2;
   border: 1px solid #b6b6b6;
   border-radius: 3px;
-  min-width: 138px;
+
+/*   
+  background-color: #e0e0e0;
+  border-radius: 50px;
+  box-shadow: inset 4px 4px 10px #bcbcbc, inset -4px -4px 10px #ffffff;
+  color: #4d4d4d;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 15px 40px;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid rgb(206, 206, 206); */
 }
-#lang-switch button {
-  padding: 0.3rem 0.8rem;
+#lang-switch div {
+  padding: 0.3rem 0.9rem;
   border: none;
   color: #1e88e5;
   cursor: pointer;
   font-size: 1rem;
   line-height: 30px;
 }
-#lang-switch button.active {
+#lang-switch div.active {
   background: #1565c0;
   color: #fff;
 }
@@ -238,13 +252,14 @@ main {
   font-weight: 600;
   
   font-family: Hei, Helvetica,'微软雅黑';
-  
 }
 
 .main-nav-wrapper {
   width: 100%;
-  clear: none;
-  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
   max-height: none;
   padding: 5px;
   background-color: #f9f9f9;
@@ -313,7 +328,7 @@ main {
 }
 
 .product-card .product-card-inner {
-  min-height: 190px;
+  min-height: 168px;
 }
 
 
@@ -778,7 +793,7 @@ main {
   width: 100%;
   height: 260px;
   background-image: url('../images/c/page_title.webp');
-  background-color: #282828;
+  background-color: #595959;
   background-size: contain;
   background-position: bottom center;
   background-repeat: no-repeat;
@@ -793,6 +808,50 @@ main {
   display: flex;
   min-width: var(--mainAreaWidth);
 }
+/* #finisher-canvas {
+  top:58px !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+} */
+
+
+/**css improve start**/
+
+.main-nav a{
+  color: #090909;
+  padding: 0.7em 1.7em;
+  font-size: 15px;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  text-decoration: none;
+  box-shadow: 6px -6px 12px #c5c5c5, -6px 0px 12px #ffffff;
+}
+
+a:visited {
+  color: #666;
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* 响应式设计 */
 @media (max-width: 1300px) {

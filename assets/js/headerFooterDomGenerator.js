@@ -16,7 +16,7 @@ function genHeader() {
             <div class="logo-header-wrapper">
                 <div class="logo-header"> 
                     <div class="logo-area">
-                        <img src="assets/images/logo.png" alt="logo" class="logo-img">
+                        <img src="assets/images/c/logo-r.png" alt="logo" class="logo-img">
                         <span id="site-title">${siteTitle}</span>
                     </div>
 
@@ -29,8 +29,8 @@ function genHeader() {
                             </div>
                         </div>
                         <div id="lang-switch">
-                            <button data-lang="zh">中文</button>
-                            <button data-lang="en">English</button>
+                            <div data-lang="zh">中文</div>
+                            <div data-lang="en">English</div>
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,7 @@ function genHeader() {
         `;
         if(pageName !== 'index') {
             headerTemplate = headerTemplate + `
-            <section class="page-title-section"> 
-            </section>
+            <section class="page-title-section header finisher-header"/>
             `
         }
         mainBody.insertAdjacentHTML('afterbegin', headerTemplate);
@@ -81,8 +80,17 @@ genHeader();
 genFooter();
 
 // 绑定按钮
-const langBtns = document.querySelectorAll('#lang-switch button');
+const langBtns = document.querySelectorAll('#lang-switch div');
 
+const reRenderFunctions = {};
+function registerReRenderFunction(name, func) {
+    reRenderFunctions[name] = func;
+}
+function unRegisterReRenderFunction(name) {
+    delete reRenderFunctions[name];
+}
+registerReRenderFunction('setActiveLangBtn', setActiveLangBtn);
+registerReRenderFunction('renderHeaderFooterWithLang', renderHeaderFooterWithLang);
 
 function setActiveLangBtn() {
     langBtns.forEach(btn => {
@@ -95,8 +103,13 @@ function setActiveLangBtn() {
 langBtns.forEach(btn => {
   btn.onclick = () => {
     setLang(btn.getAttribute('data-lang'));
-    setActiveLangBtn();
-    renderHeaderFooterWithLang();
+    // setActiveLangBtn();
+    // renderHeaderFooterWithLang();
+    for(const key in reRenderFunctions) {
+        if(reRenderFunctions.hasOwnProperty(key)) {
+            reRenderFunctions[key]();
+        }
+    }
   }
 });
 function renderHeaderFooterWithLang(){
@@ -132,4 +145,42 @@ setActiveLangBtn();
 renderLang();
 renderHeaderFooterWithLang();
 
+
+// Finisher Header动态背景图
+// new FinisherHeader({
+//   "count": 12,
+//   "size": {
+//     "min": 1300,
+//     "max": 1500,
+//     "pulse": 0
+//   },
+//   "speed": {
+//     "x": {
+//       "min": 0.6,
+//       "max": 3
+//     },
+//     "y": {
+//       "min": 0.6,
+//       "max": 3
+//     }
+//   },
+//   "colors": {
+//     "background": "#2a292c",
+//     "particles": [
+//       "#682a0b",
+//       "#558ca1",
+//       "#100e66",
+//       "#ff0a53"
+//     ]
+//   },
+//   "blending": "lighten",
+//   "opacity": {
+//     "center": 0.6,
+//     "edge": 0
+//   },
+//   "skew": -2,
+//   "shapes": [
+//     "c"
+//   ]
+// });
 

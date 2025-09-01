@@ -1,7 +1,7 @@
 // 商品数据和多语言文本
 var products = [];
 var categories = [];
-var langProductsPage = localStorage.getItem('lang') || 'zh';
+
 
 // 轮播区
 var carouselIndex = 0;
@@ -18,18 +18,24 @@ var carouselTimer = null;
 
 products = products_all_data.products;
 categories = products_all_data.categories;
-renderAll();
+renderProductsAll();
 
-function renderAll(selectedCategory = 'all') {
+function renderProductsAll(selectedCategory) {
+  let category = selectedCategory;
+  if(!selectedCategory) {
+    category = localStorage.getItem('selectedCategory')||'all';
+  } else {
+    localStorage.setItem('selectedCategory', selectedCategory);
+  }
   renderTexts();
-  renderCategories(selectedCategory);
-  renderProducts(selectedCategory);
+  renderCategories(category);
+  renderProducts(category);
 }
 
 function renderTexts() {
-  document.getElementById('site-title').textContent = langData[langProductsPage].siteTitle;
-  document.getElementById('categories-title').textContent = langData[langProductsPage].categoriesTitle;
-  document.getElementById('products-title').textContent = langData[langProductsPage].productsTitle;
+  document.getElementById('site-title').textContent = langData[lang].siteTitle;
+  document.getElementById('categories-title').textContent = langData[lang].categoriesTitle;
+  document.getElementById('products-title').textContent = langData[lang].productsTitle;
 }
 
 function renderCategories(selected) {
@@ -37,14 +43,14 @@ function renderCategories(selected) {
   catDiv.innerHTML = '';
   const allBtn = document.createElement('button');
   allBtn.className = 'category-btn' + (selected === 'all' ? ' active' : '');
-  allBtn.textContent = langProductsPage === 'zh' ? '全部' : 'All';
-  allBtn.onclick = () => renderAll('all');
+  allBtn.textContent = lang === 'zh' ? '全部' : 'All';
+  allBtn.onclick = () => renderProductsAll('all');
   catDiv.appendChild(allBtn);
   categories.forEach(cat => {
     const btn = document.createElement('button');
     btn.className = 'category-btn' + (selected === cat.id ? ' active' : '');
-    btn.textContent = cat[langProductsPage];
-    btn.onclick = () => renderAll(cat.id);
+    btn.textContent = cat[lang];
+    btn.onclick = () => renderProductsAll(cat.id);
     catDiv.appendChild(btn);
   });
 }
@@ -60,11 +66,13 @@ function renderProducts(selected) {
       card.className = 'product-card';
       card.innerHTML = `
         <div class="product-card-inner">
-          <img src="${imgUri}" alt="${prod[langProductsPage + '_name']}">
-          <h3>${prod[langProductsPage + '_name']}</h3>
+        
+          <a href="product.html?id=${prod.id}">
+            <img src="${imgUri}" alt="${prod[lang + '_name']}">
+          </a>
+          <h3>${prod[lang + '_name']}</h3>
           <div class="price">￥${prod.price}</div>
         </div>
-        <a class="view-btn" href="product.html?id=${prod.id}">${langData[langProductsPage].view}</a>
       `;
       prodDiv.appendChild(card);
     });
@@ -75,10 +83,4 @@ function renderProducts(selected) {
 
 
 // 多语言切换
-(document.querySelectorAll('#lang-switch button')).forEach(btn => {
-  btn.addEventListener('click', () => {
-    langProductsPage = btn.getAttribute('data-lang');
-    localStorage.setItem('lang', langProductsPage);
-    renderAll();
-  });
-});
+registerReRenderFunction("renderProductsWithLang", renderProductsAll);

@@ -6,12 +6,23 @@
   <title>联系我们 - 深圳市西特新环保材料有限公司</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/font/phone.css">
+  <style>
+    .contact-map-info {
+      margin: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
   <main class="main-content">
     <section class="contact-section">
       <!-- <h2 id="contact-title">联系我们</h2> -->
       <div class="contact-grid">
+      </div>
+      <div class="contact-map-info">
+        <map-comp/>
       </div>
       <div class="contact-desc">
         如有任何关于化工产品的需求或疑问，欢迎随时联系我们，我们将竭诚为您服务！
@@ -23,6 +34,50 @@
   <script type="text/javascript">
     pageName = 'contact';
   </script>
+  <script src="assets/js/lib/finisher-header.es5.min.js" type="text/javascript"></script>
   <script src="assets/js/headerFooterDomGenerator.js"></script>
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=w3kWkfc6Xe3epBtrwBXMnHQW1R93h9N0&s=1"></script>
+  <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+  <!-- <script type="importmap">
+    {
+      "imports": {
+        "VVue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js",
+        "MapComp": "./component/MapComp.js"
+      }
+    }
+  </script>
+  <script type="module">
+    // // import BMap from 'https://api.map.baidu.com/api?v=3.0&ak=w3kWkfc6Xe3epBtrwBXMnHQW1R93h9N0';
+    // import {ref} from "VVue";
+    // import * as MapComp from "MapComp";
+    // console.log("VVue:", ref);
+    // const { createApp } = Vue
+    // const app = createApp({
+    //   // components: {
+    //   //   MapComp: MapComp
+    //   // },
+    //   setup() {
+    //     const message = ref('Hello vue!')
+    //     return {
+    //       message
+    //     }
+    //   }
+    // });
+    // console.log("MapComp:", MapComp);
+    // app.component("map-comp", MapComp.default);
+
+    // app.mount('.contact-map-info');
+  </script> -->
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+      // 创建地图实例
+      const map = new BMap.Map("map-container");
+      map.centerAndZoom(new BMap.Point(12670472.00,2588048.00), 11);
+      var local = new BMap.LocalSearch(map, {
+          renderOptions:{map: map}
+      });
+      local.search("西特新环保材料有限公司");
+    });
+  </script>
 </body>
 </html> 
