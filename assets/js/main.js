@@ -44,11 +44,7 @@ function renderCarousel() {
     group.push(carouselItems[idx]);
   }
   const groupDiv = document.createElement('div');
-  groupDiv.style.display = 'flex';
-  groupDiv.style.justifyContent = 'center';
-  groupDiv.style.alignItems = 'center';
-  groupDiv.style.width = '100%';
-  groupDiv.style.height = '100%';
+  groupDiv.className = 'carousel-inner';
   group.forEach(prod => {
     const item = document.createElement('div');
     item.className = 'carousel-item active';
