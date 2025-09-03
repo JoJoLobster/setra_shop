@@ -1,3 +1,4 @@
+var obj_main = {};
 // 商品数据和多语言文本
 var products = [];
 var categories = [];
@@ -30,9 +31,9 @@ var carouselItems = [
     img: 'assets/images/home/bg-6.jpg',
     link: '#'
   }
-
 ];
-function renderCarousel() {
+
+obj_main.renderCarousel = function() {
   const carousel = document.getElementById('carousel');
   carousel.innerHTML = '';
   if (!carouselItems.length) return;
@@ -60,17 +61,11 @@ function renderCarousel() {
   if (carouselTimer) clearInterval(carouselTimer);
   carouselTimer = setInterval(() => {
     carouselIndex = (carouselIndex + showCount) % total;
-    renderCarousel();
+    obj_main.renderCarousel();
   }, 3500);
 }
 
-
-// 多语言切换
-(document.querySelectorAll('#lang-switch button')).forEach(btn => {
-  btn.addEventListener('click', () => {
-    renderCarousel();
-  });
-});
+registerReRenderFunction('renderCarousel', obj_main.renderCarousel);
 
 
-renderCarousel();
+obj_main.renderCarousel();

@@ -1,6 +1,10 @@
-// 商品数据和多语言文本
-var products = [];
-var categories = [];
+/**
+ * dependencies:
+ *  products_all_data
+ *  obj_lang
+ *  obj_util
+ */
+var obj_product_list = {};
 
 
 // 轮播区
@@ -16,57 +20,10 @@ var carouselTimer = null;
 //     renderAll();
 //   });
 
-products = products_all_data.products;
-categories = products_all_data.categories;
-renderProductsAll();
-
-function renderProductsAll(selectedCategory) {
-  let category = selectedCategory;
-  if(!selectedCategory) {
-    category = localStorage.getItem('selectedCategory')||'all';
-  } else {
-    localStorage.setItem('selectedCategory', selectedCategory);
-  }
-  renderTexts();
-  renderCategories(category);
-  renderProducts(category);
-}
-
-function renderTexts() {
-  document.getElementById('site-title').textContent = langData[lang].siteTitle;
-  document.getElementById('categories-title').textContent = langData[lang].categoriesTitle;
-  document.getElementById('products-title').textContent = langData[lang].productsTitle;
-}
-
-function renderCategories(selected) {
-  const catDiv = document.getElementById('categories');
-  catDiv.innerHTML = '';
-  const allBtn = document.createElement('button');
-  allBtn.className = 'category-btn' + (selected === 'all' ? ' active' : '');
-  allBtn.textContent = lang === 'zh' ? '全部' : 'All';
-  allBtn.onclick = () => renderProductsAll('all');
-  catDiv.appendChild(allBtn);
-  categories.forEach(cat => {
-    const btn = document.createElement('button');
-    btn.className = 'category-btn' + (selected === cat.id ? ' active' : '');
-    btn.textContent = cat[lang];
-    btn.onclick = () => renderProductsAll(cat.id);
-    catDiv.appendChild(btn);
-  });
-}
-
-function renderProducts(selected) {
-  const prodDiv = document.getElementById('products');
-  prodDiv.innerHTML = '';
-  let filtered = selected === 'all' ? products : products.filter(p => p.category === selected);
-  if(filtered.length) {
-    filtered.forEach(prod => {
-      const card = document.createElement('div');
-      const imgUri = getImgUriByProduct(prod);
-      card.className = 'product-card';
-      card.innerHTML = `
+obj_product_list.genProductCard = (prod, lang) => {
+  const imgUri = obj_util.getImgUriByProduct(prod);
+  return `
         <div class="product-card-inner">
-        
           <a href="product.html?id=${prod.id}">
             <img src="${imgUri}" alt="${prod[lang + '_name']}">
           </a>
@@ -74,6 +31,58 @@ function renderProducts(selected) {
           <div class="price">￥${prod.price}</div>
         </div>
       `;
+}
+
+obj_product_list.renderProductsAll = (selectedCategory) => {
+  let category = selectedCategory;
+  if(!selectedCategory) {
+    category = localStorage.getItem('selectedCategory')||'all';
+  } else {
+    localStorage.setItem('selectedCategory', selectedCategory);
+  }
+  obj_product_list.renderPageTitles();
+  obj_product_list.renderCategories(category);
+  obj_product_list.renderProducts(category);
+}
+
+obj_product_list.renderPageTitles = () => {
+  let lang = obj_lang.getLang();
+  document.getElementById('site-title').textContent = obj_lang.langData[lang].siteTitle;
+  document.getElementById('categories-title').textContent = obj_lang.langData[lang].categoriesTitle;
+  document.getElementById('products-title').textContent = obj_lang.langData[lang].productsTitle;
+}
+
+obj_product_list.renderCategories = (selected) => {
+  let lang = obj_lang.getLang();
+  let langData = obj_lang.getLangData();
+  const catDiv = document.getElementById('categories');
+  catDiv.innerHTML = '';
+  const allBtn = document.createElement('button');
+  allBtn.className = 'category-btn' + (selected === 'all' ? ' active' : '');
+  allBtn.textContent = langData.all;
+  allBtn.onclick = () => obj_product_list.renderProductsAll('all');
+  catDiv.appendChild(allBtn);
+  products_all_data.categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'category-btn' + (selected === cat.id ? ' active' : '');
+    btn.textContent = cat[lang];
+    btn.onclick = () => obj_product_list.renderProductsAll(cat.id);
+    catDiv.appendChild(btn);
+  });
+}
+
+obj_product_list.renderProducts = (selected) => {
+  const prodDiv = document.getElementById('products');
+  prodDiv.innerHTML = '';
+  let filtered = selected === 'all' ? 
+              products_all_data.products :
+              products_all_data.products.filter(p => p.category === selected);
+  let lang = obj_lang.getLang();
+  if(filtered.length) {
+    filtered.forEach(prod => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = obj_product_list.genProductCard(prod, lang);
       prodDiv.appendChild(card);
     });
   } else {
@@ -83,4 +92,6 @@ function renderProducts(selected) {
 
 
 // 多语言切换
-registerReRenderFunction("renderProductsWithLang", renderProductsAll);
+registerReRenderFunction("renderProductsWithLang", obj_product_list.renderProductsAll);
+
+obj_product_list.renderProductsAll();

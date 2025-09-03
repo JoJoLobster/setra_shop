@@ -1,4 +1,35 @@
-const langData = {
+
+var obj_lang = {};
+var pageName = 'index';
+const genContactInfo = (contactPhone, contactEmail, contactAddr) => `
+  <div><strong>${contactPhone}</strong>13724351021 / 0755-27782265</div>
+  <div><strong>${contactEmail}</strong>info@setra-ep.com</div>
+  <div><strong>${contactAddr}</strong>深圳市松岗镇江边工业一路9号</div>
+`;
+const genContactCards = (langDatas) => `
+        <div class="contact-card">
+          <div class="contact-icon contact-icon-phone"></div>
+          <div class="contact-label">${langDatas.contactPhoneLabel}</div>
+          <div class="contact-value">${langDatas.contactPhone}</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon contact-icon-email"></div>
+          <div class="contact-label">${langDatas.contactEmailLabel}</div>
+          <div class="contact-value">${langDatas.contactEmail}</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><img src="assets/images/c/whatsapp-logo.svg"/></div>
+          <div class="contact-label">whatsApp</div>
+          <div class="contact-value">Link</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon contact-icon-address"></div>
+          <div class="contact-label">${langDatas.contactAddrLabel}</div>
+          <div class="contact-value">${langDatas.contactAddr}</div>
+        </div>
+      `;
+
+obj_lang.langData = {
   zh: {
     home: '首页',
     siteTitle: '深圳市西特新环保材料有限公司',
@@ -45,6 +76,7 @@ const langData = {
         '特殊添加剂',
         '后处理保护系列'
     ],
+    all: '全部',
   },
   en: {
     home: 'Home', 
@@ -93,19 +125,20 @@ const langData = {
       'Special Additive',
       'Post-treatment Protection Series',
     ],
+    all: 'All',
   }
 };
 
-var lang = localStorage.getItem('lang') || 'zh';
-var pageName = 'index';
+obj_lang.getLang = () => localStorage.getItem('lang') || 'zh';
+obj_lang.getLangData = () => obj_lang.langData[obj_lang.getLang()];
 
-function setLang(newLang) {
-  lang = newLang??(localStorage.getItem('lang') || 'zh');
-  localStorage.setItem('lang', lang);
-  renderLang();
+obj_lang.setLang = (newLang) => {
+  localStorage.setItem('lang', newLang??(localStorage.getItem('lang') || 'zh'));
+  obj_lang.renderLang();
 }
-function renderLang() {
-  const d = langData[lang];
+
+obj_lang.renderLang = () => {
+  const d = obj_lang.langData[obj_lang.getLang()];
   if(document.getElementById('about-title')) document.getElementById('about-title').textContent = d.aboutTitle;
 
   if(document.getElementById('about-desc')) document.getElementById('about-desc').innerHTML = d.aboutDesc;
@@ -124,37 +157,18 @@ function renderLang() {
   if(document.getElementById('contact-title')) document.getElementById('contact-title').textContent = d.contactTitle;
   if(document.getElementById('contact-info')) {
     const info = document.getElementById('contact-info');
-    info.innerHTML = `<div><strong>${d.contactPhone}</strong>13724351021 / 0755-27782265</div><div><strong>${d.contactEmail}</strong>info@setra-ep.com</div><div><strong>${d.contactAddr}</strong>深圳市松岗镇江边工业一路9号</div>`;
+    info.innerHTML = genContactInfo(d.contactPhone, d.contactEmail, d.contactAddr);
   }
-  if(document.getElementById('products-title')) document.getElementById('products-title').textContent = d.productsTitle;
+  if(document.getElementById('products-title')) {
+    document.getElementById('products-title').textContent = d.productsTitle;
+  }
 
   // 联系我们卡片
   if(document.querySelector('.contact-section')) {
     if(document.getElementById('contact-title')) document.getElementById('contact-title').textContent = d.contactTitle;
     const grid = document.querySelector('.contact-grid');
     if(grid) {
-      grid.innerHTML = `
-        <div class="contact-card">
-          <div class="contact-icon contact-icon-phone"></div>
-          <div class="contact-label">${d.contactPhoneLabel}</div>
-          <div class="contact-value">${d.contactPhone}</div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon contact-icon-email"></div>
-          <div class="contact-label">${d.contactEmailLabel}</div>
-          <div class="contact-value">${d.contactEmail}</div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon"><img src="assets/images/c/whatsapp-logo.svg"/></div>
-          <div class="contact-label">whatsApp</div>
-          <div class="contact-value">Link</div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon contact-icon-address"></div>
-          <div class="contact-label">${d.contactAddrLabel}</div>
-          <div class="contact-value">${d.contactAddr}</div>
-        </div>
-      `;
+      grid.innerHTML = genContactCards(d);
     }
     const desc = document.querySelector('.contact-desc');
     if(desc) desc.textContent = d.contactDesc;

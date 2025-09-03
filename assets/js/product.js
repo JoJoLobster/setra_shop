@@ -1,18 +1,13 @@
-let products = [];
-let categories = [];
-let langDetailPage = localStorage.getItem('lang') || 'zh';
+var obj_product = {};
+
 let texts = {
   zh: {
-    siteTitle: '深圳市西特新环保材料有限公司',
-    back: '返回首页',
     category: '分类',
     price: '价格',
     notFound: '未找到该商品',
     yuan: '元'
   },
   en: {
-    siteTitle: 'Shenzhen SETRA new environmental protection materail CO，Ltd',
-    back: 'Back to Home',
     category: 'Category',
     price: 'Price',
     notFound: 'Product Not Found',
@@ -28,28 +23,17 @@ let texts = {
 //     renderDetail();
 //   });
 
-products = products_all_data.products;
-categories = products_all_data.categories;
-renderDetail();
 
-function getQueryId() {
+obj_product.getQueryId = () => {
   const params = new URLSearchParams(window.location.search);
   return params.get('id');
 }
 
-function renderDetail() {
-  document.getElementById('site-title').textContent = texts[langDetailPage].siteTitle;
-  const id = getQueryId();
-  const prod = products.find(p => String(p.id) === id);
-  const detailDiv = document.getElementById('product-detail');
-  if (!prod) {
-    detailDiv.innerHTML = `<div style='padding:2rem;text-align:center;'>${texts[lang].notFound}</div>`;
-    return;
-  }
-  const cat = categories.filter(c => c.id === prod.category)[0];
+obj_product.genProductDetail = (prod) => {
+  let langDetailPage = obj_lang.getLang();
+  const cat = products_all_data.categories.filter(c => c.id === prod.category)[0];
   const img = prod.image || 'assets/images/' + prod.id + '_thumb.png';
-  
-  detailDiv.innerHTML = `
+  return `
     <div class="product-detail-container">
       <div class="product-detail-left">
         <div class="product-image-container">
@@ -83,13 +67,26 @@ function renderDetail() {
         </div>
       </div>
     </div>
-  `;
+  `
+}
+
+obj_product.renderDetail = (productId) => {
+  const id = productId ?? obj_product.getQueryId();
+  if(!id) {
+    console.log('Product ID not found');
+    return;
+  }
+  const prod = products_all_data.products.find(p => String(p.id) === id);
+  const detailDiv = document.getElementById('product-detail');
+  if (!prod) {
+    detailDiv.innerHTML = `<div style='padding:2rem;text-align:center;'>${texts[lang].notFound}</div>`;
+    return;
+  }
+
+  detailDiv.innerHTML = obj_product.genProductDetail(prod);
 }
 
 // 多语言切换
-langBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    langDetailPage = btn.getAttribute('data-lang');
-    renderDetail();
-  });
-});
+registerReRenderFunction('renderProductDetail', obj_product.renderDetail);
+// 渲染产品详情
+obj_product.renderDetail();

@@ -1,6 +1,15 @@
+var obj_headerFooterDomGenerator = {};
 
-function genHeader() {
-    const d = langData[lang];
+const reRenderFunctions = {};
+function registerReRenderFunction(name, func) {
+    reRenderFunctions[name] = func;
+}
+function unRegisterReRenderFunction(name) {
+    delete reRenderFunctions[name];
+}
+
+obj_headerFooterDomGenerator.genHeader = function() {
+    const d = obj_lang.getLangData();
     let siteTitle = d.siteTitle;
     let home      = d.home     ;
     let products  = d.products ;
@@ -59,7 +68,7 @@ function genHeader() {
 
 }
 
-function genFooter() {
+obj_headerFooterDomGenerator.genFooter = function() {
     const ul = document.getElementById('site-footer');
     if(!ul) {
         const mainBody = document.getElementsByTagName('body')[0];
@@ -76,47 +85,47 @@ function genFooter() {
 }
 
 // 生成头部和底部
-genHeader(); 
-genFooter();
+obj_headerFooterDomGenerator.genHeader(); 
+obj_headerFooterDomGenerator.genFooter();
 
 // 绑定按钮
-const langBtns = document.querySelectorAll('#lang-switch div');
-
-const reRenderFunctions = {};
-function registerReRenderFunction(name, func) {
-    reRenderFunctions[name] = func;
-}
-function unRegisterReRenderFunction(name) {
-    delete reRenderFunctions[name];
-}
-registerReRenderFunction('setActiveLangBtn', setActiveLangBtn);
-registerReRenderFunction('renderHeaderFooterWithLang', renderHeaderFooterWithLang);
-
-function setActiveLangBtn() {
-    langBtns.forEach(btn => {
-      if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
-      else btn.classList.remove('active');
-    });
-}
-
-
-langBtns.forEach(btn => {
-  btn.onclick = () => {
-    setLang(btn.getAttribute('data-lang'));
-    // setActiveLangBtn();
-    // renderHeaderFooterWithLang();
+obj_headerFooterDomGenerator.langBtns = document.querySelectorAll('#lang-switch div');
+obj_headerFooterDomGenerator.langBtnClickHandler = (event) => {
+    const btn = event.currentTarget;
+    obj_lang.setLang(btn.getAttribute('data-lang'));
     for(const key in reRenderFunctions) {
         if(reRenderFunctions.hasOwnProperty(key)) {
             reRenderFunctions[key]();
         }
     }
-  }
-});
-function renderHeaderFooterWithLang(){
-    const d = langData[lang];
+}
+
+obj_headerFooterDomGenerator.setActiveLangBtn = function() {
+    let lang = obj_lang.getLang();
+    obj_headerFooterDomGenerator.langBtns.forEach(btn => {
+      if (btn.getAttribute('data-lang') === lang) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+      btn.removeEventListener('click', obj_headerFooterDomGenerator.langBtnClickHandler);
+      btn.addEventListener('click', obj_headerFooterDomGenerator.langBtnClickHandler);
+    });
+}
+
+obj_headerFooterDomGenerator.renderHeaderFooterWithLang = function() {
+    let lang = obj_lang.getLang();
+    const d = obj_lang.langData[lang];
     let domSiteTitle = document.getElementById('site-title');
     if(domSiteTitle) {
         domSiteTitle.textContent = d.siteTitle;
+        if(lang === 'zh') {
+            domSiteTitle.classList.add('site-title-zh');
+            domSiteTitle.classList.remove('site-title-en');
+        } else {
+            domSiteTitle.classList.add('site-title-en');
+            domSiteTitle.classList.remove('site-title-zh');
+        }
     }
     // 导航
     const nav = document.querySelector('.main-nav');
@@ -140,10 +149,12 @@ function renderHeaderFooterWithLang(){
 }
 
 
+registerReRenderFunction('setActiveLangBtn', obj_headerFooterDomGenerator.setActiveLangBtn);
+registerReRenderFunction('renderHeaderFooterWithLang', obj_headerFooterDomGenerator.renderHeaderFooterWithLang);
 
-setActiveLangBtn();
-renderLang();
-renderHeaderFooterWithLang();
+obj_headerFooterDomGenerator.setActiveLangBtn();
+obj_lang.renderLang();
+obj_headerFooterDomGenerator.renderHeaderFooterWithLang();
 
 
 // Finisher Header动态背景图

@@ -1,4 +1,5 @@
-function getImgUriByProduct(product) {
+var obj_util = {};
+obj_util.getImgUriByProduct = (product) => {
   if(product){
     if(product.image) {
       return 'assets/images/' + product.image;
@@ -7,7 +8,5 @@ function getImgUriByProduct(product) {
     }
 
   } 
-  
   return 'assets/images/' + product.image;
-
 }
