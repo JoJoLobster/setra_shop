@@ -65,7 +65,43 @@ obj_main.renderCarousel = function() {
   }, 3500);
 }
 
-registerReRenderFunction('renderCarousel', obj_main.renderCarousel);
+obj_main.render_Profile_Services = function() {
+  let d = obj_lang.getLangData();
+  // 首页 Company Profile & Our Products & Services
+  if(document.querySelector('.company-profile-section')) {
+    const title = document.querySelector('.company-profile-section h2');
+    if(title) title.textContent = d.homeProfileTitle;
+    const content = document.querySelector('.company-profile-content p');
+    if(content) content.textContent = d.homeProfileContent;
+    const ul = document.querySelector('.company-profile-content ul');
+    if(ul) {
+      ul.innerHTML = '';
+      d.homeProfileList.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = item;
+        ul.appendChild(li);
+      });
+    }
+  }
+
+  if(document.querySelector('.products-services-section')) {
+    const title = document.querySelector('.products-services-section h2');
+    if(title) title.textContent = d.homeServicesTitle;
+    const ul = document.querySelector('.products-services-content ul');
+    if(ul) {
+      ul.innerHTML = '';
+      d.homeServicesList.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+    }
+  }
+}
+
+registerLangReRenderFunction('renderCarousel', obj_main.renderCarousel);
+registerLangReRenderFunction('profile_Services', obj_main.render_Profile_Services);
 
 
 obj_main.renderCarousel();
+obj_main.render_Profile_Services();

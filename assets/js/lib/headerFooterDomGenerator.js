@@ -1,13 +1,11 @@
 var obj_headerFooterDomGenerator = {};
 
-const reRenderFunctions = {};
-function registerReRenderFunction(name, func) {
-    reRenderFunctions[name] = func;
-}
-function unRegisterReRenderFunction(name) {
-    delete reRenderFunctions[name];
-}
-
+// obj_headerFooterDomGenerator.genGlobalScript = function() {
+//     let gScript = document.createElement('script');
+//     gScript.src = 'assets/js/lib/global.js';
+//     document.getElementsByTagName('body')[0].insertAdjacentElement('afterbegin', gScript);
+// }
+// obj_headerFooterDomGenerator.genGlobalScript();
 obj_headerFooterDomGenerator.genHeader = function() {
     const d = obj_lang.getLangData();
     let siteTitle = d.siteTitle;
@@ -25,7 +23,7 @@ obj_headerFooterDomGenerator.genHeader = function() {
             <div class="logo-header-wrapper">
                 <div class="logo-header"> 
                     <div class="logo-area">
-                        <img src="assets/images/c/logo-r.png" alt="logo" class="logo-img">
+                        <img src="assets/images/c/setra.svg" alt="logo" class="logo-img">
                         <span id="site-title">${siteTitle}</span>
                     </div>
 
@@ -93,9 +91,9 @@ obj_headerFooterDomGenerator.langBtns = document.querySelectorAll('#lang-switch 
 obj_headerFooterDomGenerator.langBtnClickHandler = (event) => {
     const btn = event.currentTarget;
     obj_lang.setLang(btn.getAttribute('data-lang'));
-    for(const key in reRenderFunctions) {
-        if(reRenderFunctions.hasOwnProperty(key)) {
-            reRenderFunctions[key]();
+    for(const key in langReRenderFunctions) {
+        if(langReRenderFunctions.hasOwnProperty(key)) {
+            langReRenderFunctions[key]();
         }
     }
 }
@@ -149,8 +147,8 @@ obj_headerFooterDomGenerator.renderHeaderFooterWithLang = function() {
 }
 
 
-registerReRenderFunction('setActiveLangBtn', obj_headerFooterDomGenerator.setActiveLangBtn);
-registerReRenderFunction('renderHeaderFooterWithLang', obj_headerFooterDomGenerator.renderHeaderFooterWithLang);
+registerLangReRenderFunction('setActiveLangBtn', obj_headerFooterDomGenerator.setActiveLangBtn);
+registerLangReRenderFunction('renderHeaderFooterWithLang', obj_headerFooterDomGenerator.renderHeaderFooterWithLang);
 
 obj_headerFooterDomGenerator.setActiveLangBtn();
 obj_lang.renderLang();

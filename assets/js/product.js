@@ -31,7 +31,7 @@ obj_product.getQueryId = () => {
 
 obj_product.genProductDetail = (prod) => {
   let langDetailPage = obj_lang.getLang();
-  const cat = products_all_data.categories.filter(c => c.id === prod.category)[0];
+  const cat = data_products_infos.categories.filter(c => c.id === prod.category)[0];
   const img = prod.image || 'assets/images/' + prod.id + '_thumb.png';
   return `
     <div class="product-detail-container">
@@ -76,7 +76,7 @@ obj_product.renderDetail = (productId) => {
     console.log('Product ID not found');
     return;
   }
-  const prod = products_all_data.products.find(p => String(p.id) === id);
+  const prod = data_products_infos.products.find(p => String(p.id) === id);
   const detailDiv = document.getElementById('product-detail');
   if (!prod) {
     detailDiv.innerHTML = `<div style='padding:2rem;text-align:center;'>${texts[lang].notFound}</div>`;
@@ -87,6 +87,6 @@ obj_product.renderDetail = (productId) => {
 }
 
 // 多语言切换
-registerReRenderFunction('renderProductDetail', obj_product.renderDetail);
+registerLangReRenderFunction('renderProductDetail', obj_product.renderDetail);
 // 渲染产品详情
 obj_product.renderDetail();

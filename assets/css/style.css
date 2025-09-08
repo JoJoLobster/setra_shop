@@ -405,6 +405,7 @@ main {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  font-size: 40px;
 }
 [class^="contact-icon-"] {
   color: #319dcb;
@@ -417,6 +418,10 @@ main {
 }
 .contact-icon-address {
   background-image: url('../images/icon/address.svg');
+}
+.contact-icon-whatsapp {
+  background-image: url('https://platform-cdn.sharethis.com/img/whatsapp-white.svg');
+  background-size: 70% auto;
 }
 .contact-label {
   font-size: 1.1rem;

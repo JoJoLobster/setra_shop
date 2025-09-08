@@ -1,33 +1,13 @@
 
 var obj_lang = {};
 var pageName = 'index';
-const genContactInfo = (contactPhone, contactEmail, contactAddr) => `
-  <div><strong>${contactPhone}</strong>13724351021 / 0755-27782265</div>
-  <div><strong>${contactEmail}</strong>info@setra-ep.com</div>
-  <div><strong>${contactAddr}</strong>深圳市松岗镇江边工业一路9号</div>
-`;
-const genContactCards = (langDatas) => `
-        <div class="contact-card">
-          <div class="contact-icon contact-icon-phone"></div>
-          <div class="contact-label">${langDatas.contactPhoneLabel}</div>
-          <div class="contact-value">${langDatas.contactPhone}</div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon contact-icon-email"></div>
-          <div class="contact-label">${langDatas.contactEmailLabel}</div>
-          <div class="contact-value">${langDatas.contactEmail}</div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon"><img src="assets/images/c/whatsapp-logo.svg"/></div>
-          <div class="contact-label">whatsApp</div>
-          <div class="contact-value">Link</div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon contact-icon-address"></div>
-          <div class="contact-label">${langDatas.contactAddrLabel}</div>
-          <div class="contact-value">${langDatas.contactAddr}</div>
-        </div>
-      `;
+const langReRenderFunctions = {};
+function registerLangReRenderFunction(name, func) {
+    langReRenderFunctions[name] = func;
+}
+function unregisterLangReRenderFunction(name) {
+    delete langReRenderFunctions[name];
+}
 
 obj_lang.langData = {
   zh: {
@@ -145,63 +125,11 @@ obj_lang.renderLang = () => {
 
 
   if(document.getElementById('strengths-title')) document.getElementById('strengths-title').textContent = d.strengthsTitle;
-  if(document.getElementById('strengths-list')) {
-    const ul = document.getElementById('strengths-list');
-    ul.innerHTML = '';
-    d.strengthsList.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      ul.appendChild(li);
-    });
-  }
+  
   if(document.getElementById('contact-title')) document.getElementById('contact-title').textContent = d.contactTitle;
-  if(document.getElementById('contact-info')) {
-    const info = document.getElementById('contact-info');
-    info.innerHTML = genContactInfo(d.contactPhone, d.contactEmail, d.contactAddr);
-  }
+
   if(document.getElementById('products-title')) {
     document.getElementById('products-title').textContent = d.productsTitle;
-  }
-
-  // 联系我们卡片
-  if(document.querySelector('.contact-section')) {
-    if(document.getElementById('contact-title')) document.getElementById('contact-title').textContent = d.contactTitle;
-    const grid = document.querySelector('.contact-grid');
-    if(grid) {
-      grid.innerHTML = genContactCards(d);
-    }
-    const desc = document.querySelector('.contact-desc');
-    if(desc) desc.textContent = d.contactDesc;
-  }
-  // 首页 Company Profile & Our Products & Services
-  if(document.querySelector('.company-profile-section')) {
-    const title = document.querySelector('.company-profile-section h2');
-    if(title) title.textContent = d.homeProfileTitle;
-    const content = document.querySelector('.company-profile-content p');
-    if(content) content.textContent = d.homeProfileContent;
-    const ul = document.querySelector('.company-profile-content ul');
-    if(ul) {
-      ul.innerHTML = '';
-      d.homeProfileList.forEach(item => {
-        const li = document.createElement('li');
-        li.innerHTML = item;
-        ul.appendChild(li);
-      });
-    }
-  }
-
-  if(document.querySelector('.products-services-section')) {
-    const title = document.querySelector('.products-services-section h2');
-    if(title) title.textContent = d.homeServicesTitle;
-    const ul = document.querySelector('.products-services-content ul');
-    if(ul) {
-      ul.innerHTML = '';
-      d.homeServicesList.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        ul.appendChild(li);
-      });
-    }
   }
 }
 

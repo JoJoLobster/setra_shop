@@ -1,4 +1,4 @@
-const products_all_data =
+const data_products_infos =
 {
   "categories": [
     {"id": "NoAirPlating", "zh": '无气电镀', "en": 'No-air Plating'},

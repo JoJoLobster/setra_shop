@@ -1,6 +1,6 @@
 /**
  * dependencies:
- *  products_all_data
+ *  data_products_infos
  *  obj_lang
  *  obj_util
  */
@@ -62,7 +62,7 @@ obj_product_list.renderCategories = (selected) => {
   allBtn.textContent = langData.all;
   allBtn.onclick = () => obj_product_list.renderProductsAll('all');
   catDiv.appendChild(allBtn);
-  products_all_data.categories.forEach(cat => {
+  data_products_infos.categories.forEach(cat => {
     const btn = document.createElement('button');
     btn.className = 'category-btn' + (selected === cat.id ? ' active' : '');
     btn.textContent = cat[lang];
@@ -75,8 +75,8 @@ obj_product_list.renderProducts = (selected) => {
   const prodDiv = document.getElementById('products');
   prodDiv.innerHTML = '';
   let filtered = selected === 'all' ? 
-              products_all_data.products :
-              products_all_data.products.filter(p => p.category === selected);
+              data_products_infos.products :
+              data_products_infos.products.filter(p => p.category === selected);
   let lang = obj_lang.getLang();
   if(filtered.length) {
     filtered.forEach(prod => {
@@ -92,6 +92,6 @@ obj_product_list.renderProducts = (selected) => {
 
 
 // 多语言切换
-registerReRenderFunction("renderProductsWithLang", obj_product_list.renderProductsAll);
+registerLangReRenderFunction("renderProductsWithLang", obj_product_list.renderProductsAll);
 
 obj_product_list.renderProductsAll();
