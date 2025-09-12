@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1">
+ <g class="layer">
+  <title>Layer 1</title>
+  <g id="svg_5" transform="translate(0 1) translate(1 0) translate(1 0) translate(1 0) translate(0 -1) translate(0 -1) translate(0 -1) translate(0 -1) translate(0 -1) translate(0 -1) translate(0 -1) translate(0 1) translate(8.00001 31.0001) scale(0.713289 0.710893) translate(-8.00001 -31.0001) translate(9 30) matrix(0.540066 0 0 0.528391 -23.2557 -33.323)">
+   <polygon fill="#bf38f0" id="svg_4" points="482.06085205078125,351.06518560346706 485.06085205078125,378.06518560346706 520.0608520507812,392.06518560346706 520.0608520507812,357.06518560346706 505.06085205078125,357.06518560346706 505.06085205078125,374.06518560346706 491.06085205078125,367.06518560346706 489.06085205078125,354.06518560346706" stroke="#bf38f0" stroke-width="2" transform="rotate(180, 293, 200)"/>
+   <polygon fill="#bf38f0" id="svg_3" points="43.06085968017578,22.065189446460295 46.06085968017578,49.065189446460295 81.06085968017578,63.065189446460295 81.06085968017578,28.065189446460295 66.06085968017578,28.065189446460295 66.06085968017578,45.065189446460295 52.06085968017578,38.065189446460295 50.06085968017578,25.065189446460295" stroke="#bf38f0" stroke-width="2"/>
+  </g>
+  <text fill="#aa56ff" font-family="Fantasy" font-size="25" font-weight="bold" id="svg_2" text-anchor="middle" textLength="0" transform="matrix(0.391641 0 0 0.466826 -73.6267 -141.198)" word-spacing="-0.8" x="284.59" y="382.57">西特</text>
+  <text fill="#aa56ff" font-family="Courier" font-size="25" font-weight="bold" id="svg_1" text-anchor="middle" transform="matrix(0.361562 0 0 0.529329 1.40037 -101.542)" x="34.5" y="261.27">SETRA</text>
+ </g>
+</svg>

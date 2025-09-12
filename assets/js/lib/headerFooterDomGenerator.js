@@ -23,7 +23,7 @@ obj_headerFooterDomGenerator.genHeader = function() {
             <div class="logo-header-wrapper">
                 <div class="logo-header"> 
                     <div class="logo-area">
-                        <img src="assets/images/c/setra.svg" alt="logo" class="logo-img">
+                        <img src="assets/images/c/setra1.svg" alt="logo" class="logo-img">
                         <span id="site-title">${siteTitle}</span>
                     </div>
 
