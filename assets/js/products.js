@@ -23,13 +23,11 @@ var carouselTimer = null;
 obj_product_list.genProductCard = (prod, lang) => {
   const imgUri = obj_util.getImgUriByProduct(prod);
   return `
-        <div class="product-card-inner">
-          <a href="product.html?id=${prod.id}">
-            <img src="${imgUri}" alt="${prod[lang + '_name']}">
-          </a>
-          <h3>${prod[lang + '_name']}</h3>
-          <div class="price">￥${prod.price}</div>
-        </div>
+        <a href="product.html?id=${prod.id}">
+          <img src="${imgUri}" alt="${prod[lang + '_name']}">
+        </a>
+        <div class="title">${prod[lang + '_name']}</div>
+        <div class="price">￥${prod.price}</div>
       `;
 }
 

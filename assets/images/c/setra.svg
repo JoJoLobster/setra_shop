@@ -1,12 +1,52 @@
-<?xml version="1.0"?>
-<svg width="48" height="48" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1">
- <g class="layer">
-  <title>Layer 1</title>
-  <g id="svg_5" transform="translate(0 1) translate(1 0) translate(1 0) translate(1 0) translate(0 -1) translate(0 -1) translate(0 -1) translate(0 -1) translate(0 -1) translate(0 -1) translate(0 -1) translate(0 1) translate(8.00001 31.0001) scale(0.713289 0.710893) translate(-8.00001 -31.0001) translate(9 30) matrix(0.540066 0 0 0.528391 -23.2557 -33.323)">
-   <polygon fill="#bf38f0" id="svg_4" points="482.06085205078125,351.06518560346706 485.06085205078125,378.06518560346706 520.0608520507812,392.06518560346706 520.0608520507812,357.06518560346706 505.06085205078125,357.06518560346706 505.06085205078125,374.06518560346706 491.06085205078125,367.06518560346706 489.06085205078125,354.06518560346706" stroke="#bf38f0" stroke-width="2" transform="rotate(180, 293, 200)"/>
-   <polygon fill="#bf38f0" id="svg_3" points="43.06085968017578,22.065189446460295 46.06085968017578,49.065189446460295 81.06085968017578,63.065189446460295 81.06085968017578,28.065189446460295 66.06085968017578,28.065189446460295 66.06085968017578,45.065189446460295 52.06085968017578,38.065189446460295 50.06085968017578,25.065189446460295" stroke="#bf38f0" stroke-width="2"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160" height="40" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 紫色渐变 - 匹配原logo色调 -->
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8673c2"/>
+      <stop offset="100%" style="stop-color:#6352a3"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 左侧S形图形 -->
+  <g transform="translate(4, 2)">
+    <!-- 上方菱形 - 左右扁平 (顶16,0 右22,8 底16,16 左10,8) -->
+    <polygon points="16,0 22,8 16,16 10,8" fill="url(#purpleGradient)"/>
+    
+    <!-- 上方菱形左下边中点: (10+16)/2,(8+16)/2 = (13, 12) -->
+    <!-- 下方菱形右上边中点: (8+14)/2,(20+28)/2 = (11, 24) -->
+    
+    <!-- 完整S形连线 - 更细 -->
+    <path d="M13,12 
+             C5,14 5,20 11,22 
+             C17,24 17,28 11,24" 
+          fill="none" 
+          stroke="url(#purpleGradient)" 
+          stroke-width="0.8"
+          stroke-linecap="round"/>
+    
+    <!-- 上方连接点 - 上方菱形左下边中点 -->
+    <circle cx="13" cy="12" r="1.2" fill="url(#purpleGradient)"/>
+    
+    <!-- 下方连接点 - 下方菱形右上边中点 -->
+    <circle cx="11" cy="24" r="1.2" fill="url(#purpleGradient)"/>
+    
+    <!-- 下方菱形 - 左右扁平 (顶8,20 右14,28 底8,36 左2,28) -->
+    <polygon points="8,20 14,28 8,36 2,28" fill="url(#purpleGradient)"/>
   </g>
-  <text fill="#aa56ff" font-family="Serif" font-size="25" font-weight="bold" id="svg_2" text-anchor="middle" textLength="0" transform="matrix(0.391641 0 0 0.466826 -73.6267 -141.198)" word-spacing="-0.8" x="284.59" y="382.57">西特</text>
-  <text fill="#aa56ff" font-family="Impact" font-size="25" id="svg_1" text-anchor="middle" transform="matrix(0.467391 0 0 0.478094 -6.10163 -47.8302)" x="42.55" y="180.26">SETRA</text>
- </g>
+  
+  <!-- SETRA 英文文字 - 深蓝色 -->
+  <text x="40" y="26" 
+        font-family="Arial Black, Arial, Helvetica, sans-serif" 
+        font-size="18" 
+        font-weight="bold" 
+        letter-spacing="0.5"
+        fill="#1e2d52">SETRA</text>
+  
+  <!-- 西特 中文文字 - 深蓝色 -->
+  <text x="115" y="26" 
+        font-family="Microsoft YaHei, PingFang SC, SimHei, sans-serif" 
+        font-size="16" 
+        font-weight="500"
+        fill="#1e2d52">西特</text>
 </svg>

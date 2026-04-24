@@ -35,36 +35,27 @@ obj_product.genProductDetail = (prod) => {
   const img = prod.image || 'assets/images/' + prod.id + '_thumb.png';
   return `
     <div class="product-detail-container">
-      <div class="product-detail-left">
-        <div class="product-image-container">
-          <img src="${img}" alt="${prod[langDetailPage + '_name']}" class="product-detail-image">
+      <h3>产品描述</h3> 
+      <div class="description">
+        <div>
+          <span class="info-label">${texts[langDetailPage].category}:</span>
+          <span class="info-value">${cat ? cat[langDetailPage] : ''}</span>
+          <span class="info-label">${texts[langDetailPage].price}:</span>
+          <span class="price-value">￥${prod.price} ${texts[langDetailPage].yuan}</span>
         </div>
+        <p>${prod[langDetailPage + '_name']}</p>
+        <img src="${img}" alt="${prod[langDetailPage + '_name']}" class="product-detail-image"> 
+        <p>${prod[langDetailPage + '_description'] || '暂无详细描述'}</p>
       </div>
-      <div class="product-detail-right">
-        <div class="product-info">
-          <h1 class="product-title">${prod[langDetailPage + '_name']}</h1>
-          <div class="product-category">
-            <span class="info-label">${texts[langDetailPage].category}:</span>
-            <span class="info-value">${cat ? cat[langDetailPage] : ''}</span>
-          </div>
-          <div class="product-price">
-            <span class="info-label">${texts[langDetailPage].price}:</span>
-            <span class="price-value">￥${prod.price} ${texts[langDetailPage].yuan}</span>
-          </div>
-          <div class="product-description">
-            <h3>产品描述</h3>
-            <p>${prod[langDetailPage + '_description'] || '暂无详细描述'}</p>
-          </div>
-          <div class="product-specifications">
-            <h3>产品规格</h3>
-            <ul>
-              <li><strong>产品编号:</strong> <span>${prod.id}</span></li>
-              <li><strong>包装规格:</strong> <span>${prod.package || '标准包装'}</span></li>
-              <li><strong>储存条件:</strong> <span>${prod.storage || '常温储存'}</span></li>
-              <li><strong>保质期:</strong> <span>${prod.shelf_life || '长期有效'}</span></li>
-            </ul>
-          </div>
-        </div>
+        
+      <h3>产品规格</h3>
+      <div class="specifications">
+        <ul>
+          <li><strong>产品编号:</strong> <span>${prod.id}</span></li>
+          <li><strong>包装规格:</strong> <span>${prod.package || '标准包装'}</span></li>
+          <li><strong>储存条件:</strong> <span>${prod.storage || '常温储存'}</span></li>
+          <li><strong>保质期:</strong> <span>${prod.shelf_life || '长期有效'}</span></li>
+        </ul>
       </div>
     </div>
   `
@@ -89,4 +80,4 @@ obj_product.renderDetail = (productId) => {
 // 多语言切换
 registerLangReRenderFunction('renderProductDetail', obj_product.renderDetail);
 // 渲染产品详情
-obj_product.renderDetail();
+obj_product.renderDetail(obj_product.getQueryId());
