@@ -70,7 +70,7 @@ obj_product_list.renderCategories = (selected) => {
 }
 
 obj_product_list.renderProducts = (selected) => {
-  const prodDiv = document.getElementById('products');
+  const prodDiv = document.getElementById('products-list');
   prodDiv.innerHTML = '';
   let filtered = selected === 'all' ? 
               data_products_infos.products :
