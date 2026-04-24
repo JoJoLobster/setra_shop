@@ -105,9 +105,10 @@ main {
   margin-bottom: 2rem;
 }
 #carousel-section {
-  margin-bottom: 2rem;
-  /* background-color: #00cc88;
-  background-image: url("https://www.transparenttextures.com/patterns/diagmonds-light.png"); */
+  /*
+    margin-bottom: 2rem;
+   background-color: #00cc88;
+    background-image: url("https://www.transparenttextures.com/patterns/diagmonds-light.png"); */
 }
 #carousel {
   position: relative;
