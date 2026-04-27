@@ -57,6 +57,8 @@ obj_lang.langData = {
         '后处理保护系列'
     ],
     all: '全部',
+    searchPlaceholder: '按产品名称搜索',
+    searchButton: '搜索',
   },
   en: {
     home: 'Home', 
@@ -106,6 +108,8 @@ obj_lang.langData = {
       'Post-treatment Protection Series',
     ],
     all: 'All',
+    searchPlaceholder: 'Search by product name',
+    searchButton: 'Search',
   }
 };
 
@@ -130,6 +134,12 @@ obj_lang.renderLang = () => {
 
   if(document.getElementById('products-title')) {
     document.getElementById('products-title').textContent = d.productsTitle;
+  }
+  if (document.getElementById('product-search-input') && d.searchPlaceholder) {
+    document.getElementById('product-search-input').placeholder = d.searchPlaceholder;
+  }
+  if (document.getElementById('product-search-btn') && d.searchButton) {
+    document.getElementById('product-search-btn').textContent = d.searchButton;
   }
 }
 

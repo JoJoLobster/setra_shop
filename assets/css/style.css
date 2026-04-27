@@ -322,6 +322,41 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
 }
+.product-search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.product-search-bar input[type="search"] {
+  flex: 1 1 180px;
+  min-width: 140px;
+  max-width: 400px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid #d5dee8;
+  border-radius: 8px;
+  background: #fff;
+  color: #222;
+}
+.product-search-bar input[type="search"]::placeholder {
+  color: #7a8a99;
+}
+#product-search-btn {
+  padding: 0.45rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: #1e88e5;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+#product-search-btn:hover {
+  background: #1565c0;
+}
 #products-list .product-card {
   background: #f7f9fa;
   border: 1px solid #e3eaf2;

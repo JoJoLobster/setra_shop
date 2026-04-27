@@ -6,19 +6,28 @@
  */
 var obj_product_list = {};
 
+/** 当前搜索关键词（trim 后非空时才参与过滤） */
+obj_product_list.searchQuery = '';
+
+obj_product_list.productMatchesSearch = (prod, q) => {
+  if (!q) return true;
+  const needle = q.trim();
+  if (!needle) return true;
+  const zh = prod.zh_name || '';
+  const en = prod.en_name || '';
+  
+  if (lang === 'zh') {
+    if (zh.toLowerCase().indexOf(needle.toLowerCase()) !== -1) return true;
+  } else {
+    if (en.toLowerCase().indexOf(needle.toLowerCase()) !== -1) return true;
+  }
+  return false;
+};
 
 // 轮播区
 var carouselIndex = 0;
 var carouselTimer = null;
 
-// 加载商品数据
-// fetch('data/products.json')
-//   .then(res => res.json())
-//   .then(data => {
-//     products = data.products;
-//     categories = data.categories;
-//     renderAll();
-//   });
 
 obj_product_list.genProductCard = (prod, lang) => {
   const imgUri = obj_util.getImgUriByProduct(prod);
@@ -45,9 +54,14 @@ obj_product_list.renderProductsAll = (selectedCategory) => {
 
 obj_product_list.renderPageTitles = () => {
   let lang = obj_lang.getLang();
+  const d = obj_lang.getLangData();
   document.getElementById('site-title').textContent = obj_lang.langData[lang].siteTitle;
   document.getElementById('categories-title').textContent = obj_lang.langData[lang].categoriesTitle;
   document.getElementById('products-title').textContent = obj_lang.langData[lang].productsTitle;
+  const searchInput = document.getElementById('product-search-input');
+  const searchBtn = document.getElementById('product-search-btn');
+  if (searchInput && d.searchPlaceholder) searchInput.placeholder = d.searchPlaceholder;
+  if (searchBtn && d.searchButton) searchBtn.textContent = d.searchButton;
 }
 
 obj_product_list.renderCategories = (selected) => {
@@ -75,6 +89,9 @@ obj_product_list.renderProducts = (selected) => {
   let filtered = selected === 'all' ? 
               data_products_infos.products :
               data_products_infos.products.filter(p => p.category === selected);
+  if (obj_product_list.searchQuery) {
+    filtered = filtered.filter(p => obj_product_list.productMatchesSearch(p, obj_product_list.searchQuery));
+  }
   let lang = obj_lang.getLang();
   if(filtered.length) {
     filtered.forEach(prod => {
@@ -88,6 +105,32 @@ obj_product_list.renderProducts = (selected) => {
   }
 }
 
+
+obj_product_list.runSearch = function () {
+  const input = document.getElementById('product-search-input');
+  if (!input) return;
+  const v = input.value;
+  if (v.trim()) {
+    obj_product_list.searchQuery = v.trim();
+  } else {
+    obj_product_list.searchQuery = '';
+  }
+  const cat = localStorage.getItem('selectedCategory') || 'all';
+  obj_product_list.renderProducts(cat);
+};
+
+(function initProductSearch () {
+  const btn = document.getElementById('product-search-btn');
+  const input = document.getElementById('product-search-input');
+  if (!btn || !input) return;
+  btn.addEventListener('click', () => obj_product_list.runSearch());
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      obj_product_list.runSearch();
+    }
+  });
+})();
 
 // 多语言切换
 registerLangReRenderFunction("renderProductsWithLang", obj_product_list.renderProductsAll);
