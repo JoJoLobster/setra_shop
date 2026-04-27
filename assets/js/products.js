@@ -15,11 +15,11 @@ obj_product_list.productMatchesSearch = (prod, q) => {
   if (!needle) return true;
   const zh = prod.zh_name || '';
   const en = prod.en_name || '';
-  
-  if (lang === 'zh') {
-    if (zh.toLowerCase().indexOf(needle.toLowerCase()) !== -1) return true;
-  } else {
+  const lang = obj_lang.getLang();
+  if (lang === 'en') {
     if (en.toLowerCase().indexOf(needle.toLowerCase()) !== -1) return true;
+  } else {
+    if (zh.toLowerCase().indexOf(needle.toLowerCase()) !== -1) return true;
   }
   return false;
 };
