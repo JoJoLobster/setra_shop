@@ -31,7 +31,7 @@ obj_product.getQueryId = () => {
 
 obj_product.genProductDetail = (prod) => {
   let langDetailPage = obj_lang.getLang();
-  const cat = data_products_infos.categories.filter(c => c.id === prod.category)[0];
+  const category = data_products_infos.categories.filter(c => c.id === prod.category)[0];
   const img = prod.image || 'assets/images/' + prod.id + '_thumb.png';
   return `
     <div class="product-detail-container">
@@ -39,7 +39,7 @@ obj_product.genProductDetail = (prod) => {
       <div class="description">
         <div>
           <span class="info-label">${texts[langDetailPage].category}:</span>
-          <span class="info-value">${cat ? cat[langDetailPage] : ''}</span>
+          <span class="info-value">${category ? category[langDetailPage] : ''}</span>
           <span class="info-label">${texts[langDetailPage].price}:</span>
           <span class="price-value">￥${prod.price} ${texts[langDetailPage].yuan}</span>
         </div>

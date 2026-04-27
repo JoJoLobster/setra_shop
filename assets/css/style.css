@@ -95,7 +95,6 @@ header .phone_lang_switch {
   }
 }
 
-
 main {
   min-height: calc(100vh - 349px);
   max-width:  var(--mainAreaWidth);
@@ -104,6 +103,7 @@ main {
   
   margin-bottom: 2rem;
 }
+
 #carousel-section {
   /*
     margin-bottom: 2rem;
@@ -152,7 +152,6 @@ main {
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.98rem;
-  font-weight: 600;
   transition: background 0.2s, color 0.2s;
 }
 .category-btn.active, .category-btn:hover {
