@@ -64,7 +64,6 @@ obj_headerFooterDomGenerator.genHeader = function () {
           <a href="about.html"     data-nav="about"     data-i18n="about">${d.about}</a>
           <a href="contact.html"   data-nav="contact"   data-i18n="contact">${d.contact}</a>
         </nav>
-        <a href="contact.html" class="header-cta" data-i18n="heroCtaContact">${d.heroCtaContact}</a>
         <button type="button" class="nav-toggle" aria-label="Toggle Menu" aria-expanded="false"><span></span></button>
       </div>
     </header>`;

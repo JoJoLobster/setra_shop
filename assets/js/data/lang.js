@@ -75,7 +75,6 @@ obj_lang.langData = {
 
         // 首页
         heroCtaProducts: '查看产品',
-        heroCtaContact: '联系我们',
 
         homeAboutEyebrow: '关于我们',
         homeAboutTitle: '16+ 年深耕电镀化学品行业',
@@ -215,7 +214,7 @@ obj_lang.langData = {
             products: 'High-Quality Chemicals & Plating Additives',
             product: 'Product Details',
             strengths: 'Why Customers Choose Us',
-            about: 'Shenzhen Xite New EP Material Co., Ltd.',
+            about: 'Shenzhen Xite New EP Material',
             contact: 'Contact Us · Let’s Work Together'
         },
         heroSubtitle: {
@@ -229,7 +228,6 @@ obj_lang.langData = {
         breadcrumbHome: 'Home',
 
         heroCtaProducts: 'View Products',
-        heroCtaContact: 'Contact Us',
 
         homeAboutEyebrow: 'About Us',
         homeAboutTitle: '16+ Years in the Plating Chemistry Industry',
@@ -432,6 +430,13 @@ obj_lang.renderLang = function () {
         if (Object.prototype.hasOwnProperty.call(langReRenderFunctions, key)) {
             try { langReRenderFunctions[key](); } catch (e) { /* ignore */ }
         }
+    }
+    const siteTitle = document.getElementById('site-title');
+    const langNow = obj_lang.getLang();
+    if (siteTitle && langNow === 'zh' && !siteTitle.classList.contains('logo-text-main-cn')) {
+        siteTitle.classList.add('logo-text-main-cn');
+    } else {
+        siteTitle.classList.remove('logo-text-main-cn');
     }
 };
 
