@@ -1,39 +1,52 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>我们的产品 - 深圳市西特新环保材料有限公司</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/font/phone.css">
 </head>
+
 <body>
   <main class="main-content">
-    <section id="categories-section" class="section-wrapper">
-      <h2 class="section-title" id="categories-title">商品分类</h2>
-      <div id="categories">
-        <!-- 分类按钮由JS动态插入 -->
-      </div>
+    <section id="categories-section">
+      <h2 class="section-title" id="categories-title" data-i18n="categoriesTitle"></h2>
+      <div id="categories"></div>
     </section>
-    <section id="products-section" class="section-wrapper">
-      <h2 class="section-title" id="products-title">商品列表</h2>
+
+    <section id="products-section">
+      <h2 class="section-title" id="products-title" data-i18n="productsTitle"></h2>
       <div class="product-search-bar" id="product-search-bar">
-        <input type="search" id="product-search-input" autocomplete="off" value="" />
-        <button type="button" id="product-search-btn">搜索</button>
+        <input type="search" id="product-search-input" autocomplete="off" value=""
+               data-i18n-attr="placeholder:searchPlaceholder" />
+        <button type="button" id="product-search-btn" data-i18n="searchButton"></button>
       </div>
-      <div id="products-list">
-        <!-- 商品列表由JS动态插入 -->
-      </div>
+      <div id="products-list"></div>
     </section>
   </main>
-  
+
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <div>
+        <h3 data-i18n="ctaTitle"></h3>
+        <p data-i18n="ctaDesc"></p>
+      </div>
+      <a href="contact.html" class="btn btn-primary" data-i18n="ctaButton"></a>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+    var pageName = 'products';
+  </script>
   <script src="assets/js/data/products_all.js"></script>
   <script src="assets/js/data/lang.js"></script>
-  <script type="text/javascript">
-    pageName = 'products';
-  </script>
   <script src="assets/js/lib/headerFooterDomGenerator.js"></script>
   <script src="assets/js/lib/util.js"></script>
   <script src="assets/js/products.js"></script>
 </body>
-</html> 
+
+</html>

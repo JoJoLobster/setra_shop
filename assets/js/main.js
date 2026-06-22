@@ -1,107 +1,106 @@
+/**
+ * 首页 (index.html) 脚本
+ * - Hero 图片轮播
+ * - 公司简介卡片 (homeProfileList)
+ * - 产品与服务列表 (homeServicesList)
+ * - 我们的强项卡片
+ *
+ * 多语言：通过 langchange 事件刷新动态生成的内容。
+ */
+
 var obj_main = {};
-// 商品数据和多语言文本
-var products = [];
-var categories = [];
-var langMainPage = localStorage.getItem('lang') || 'zh';
 
-// 轮播区
-var carouselIndex = 0;
-var carouselTimer = null;
-
-// 加载商品数据
-// fetch('data/products.json')
-//   .then(res => res.json())
-//   .then(data => {
-//     products = data.products;
-//     categories = data.categories;
-//     renderAll();
-//   });
-
-
-var carouselItems = [
-  {
-    img: 'assets/images/home/bg-2.jpg',
-    link: '#'
-  },
-  {
-    img: 'assets/images/home/bg-4.jpg',
-    link: '#'
-  },
-  {
-    img: 'assets/images/home/bg-6.jpg',
-    link: '#'
-  }
+var heroSlides = [
+    'assets/images/home/bg-2.jpg',
+    'assets/images/home/bg-4.jpg',
+    'assets/images/home/bg-6.jpg'
 ];
 
-obj_main.renderCarousel = function() {
-  const carousel = document.getElementById('carousel');
-  carousel.innerHTML = '';
-  if (!carouselItems.length) return;
-  const showCount = 1;
-  const total = Math.min(5, carouselItems.length); // 最多轮播5个商品
-  let group = [];
-  for (let i = 0; i < showCount; i++) {
-    const idx = (carouselIndex + i) % total;
-    group.push(carouselItems[idx]);
-  }
-  const groupDiv = document.createElement('div');
-  groupDiv.className = 'carousel-inner';
-  group.forEach(prod => {
-    const item = document.createElement('div');
-    item.className = 'carousel-item active';
-    item.style.flex = '1 1 0';
-    item.style.margin = '0 10px';
-    const imgUri = prod.img;
-    item.innerHTML = `
-      <img src="${imgUri}" alt="">
-    `;
-    groupDiv.appendChild(item);
-  });
-  carousel.appendChild(groupDiv);
-  if (carouselTimer) clearInterval(carouselTimer);
-  carouselTimer = setInterval(() => {
-    carouselIndex = (carouselIndex + showCount) % total;
-    obj_main.renderCarousel();
-  }, 3500);
-}
+obj_main.heroIndex = 0;
+obj_main.heroTimer = null;
 
-obj_main.render_Profile_Services = function() {
-  let d = obj_lang.getLangData();
-  // 首页 Company Profile & Our Products & Services
-  if(document.querySelector('.company-profile-section')) {
-    const title = document.querySelector('.company-profile-section h2');
-    if(title) title.textContent = d.homeProfileTitle;
-    const content = document.querySelector('.company-profile-content p');
-    if(content) content.textContent = d.homeProfileContent;
-    const ul = document.querySelector('.company-profile-content ul');
-    if(ul) {
-      ul.innerHTML = '';
-      d.homeProfileList.forEach(item => {
-        const li = document.createElement('li');
-        li.innerHTML = item;
-        ul.appendChild(li);
-      });
+obj_main.renderHeroStack = function () {
+    const stack = document.getElementById('hero-image-stack');
+    const dots = document.getElementById('hero-dots');
+    if (!stack || !dots) return;
+
+    stack.innerHTML = heroSlides.map((src, i) => `
+        <div class="slide${i === obj_main.heroIndex ? ' active' : ''}">
+            <img src="${src}" alt="hero-${i + 1}">
+        </div>
+    `).join('');
+    dots.innerHTML = heroSlides.map((_, i) => `
+        <div class="dot${i === obj_main.heroIndex ? ' active' : ''}" data-i="${i}" role="button" aria-label="slide ${i + 1}"></div>
+    `).join('');
+
+    dots.querySelectorAll('.dot').forEach(d => {
+        d.addEventListener('click', () => {
+            obj_main.heroIndex = parseInt(d.getAttribute('data-i'), 10) || 0;
+            obj_main.updateHeroActive();
+            obj_main.resetTimer();
+        });
+    });
+};
+
+obj_main.updateHeroActive = function () {
+    const stack = document.getElementById('hero-image-stack');
+    const dots = document.getElementById('hero-dots');
+    if (!stack || !dots) return;
+    stack.querySelectorAll('.slide').forEach((el, i) => {
+        el.classList.toggle('active', i === obj_main.heroIndex);
+    });
+    dots.querySelectorAll('.dot').forEach((el, i) => {
+        el.classList.toggle('active', i === obj_main.heroIndex);
+    });
+};
+
+obj_main.resetTimer = function () {
+    if (obj_main.heroTimer) clearInterval(obj_main.heroTimer);
+    obj_main.heroTimer = setInterval(() => {
+        obj_main.heroIndex = (obj_main.heroIndex + 1) % heroSlides.length;
+        obj_main.updateHeroActive();
+    }, 4500);
+};
+
+obj_main.renderProfileServices = function () {
+    const d = obj_lang.getLangData();
+
+    // 公司简介列表
+    const profileUl = document.querySelector('.company-profile-content ul');
+    if (profileUl) {
+        profileUl.innerHTML = d.homeProfileList.map(item => `<li>${item}</li>`).join('');
     }
-  }
 
-  if(document.querySelector('.products-services-section')) {
-    const title = document.querySelector('.products-services-section h2');
-    if(title) title.textContent = d.homeServicesTitle;
-    const ul = document.querySelector('.products-services-content ul');
-    if(ul) {
-      ul.innerHTML = '';
-      d.homeServicesList.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        ul.appendChild(li);
-      });
+    // 产品与服务列表
+    const servicesUl = document.querySelector('.products-services-content ul');
+    if (servicesUl) {
+        servicesUl.innerHTML = d.homeServicesList.map(item => `<li>${item}</li>`).join('');
     }
-  }
-}
+};
 
-registerLangReRenderFunction('renderCarousel', obj_main.renderCarousel);
-registerLangReRenderFunction('profile_Services', obj_main.render_Profile_Services);
+obj_main.renderHomeStrengths = function () {
+    const list = document.getElementById('home-strengths-list');
+    if (!list) return;
+    const d = obj_lang.getLangData();
+    const titles = d.strengthsList || [];
+    const descs = d.strengthsDesc || [];
+    list.innerHTML = titles.map((title, i) => `
+        <li class="strength-card">
+            <div class="strength-icon">${String(i + 1).padStart(2, '0')}</div>
+            <h4>${title}</h4>
+            <p>${descs[i] || ''}</p>
+        </li>
+    `).join('');
+};
 
+// 监听语言切换
+window.addEventListener('langchange', () => {
+    obj_main.renderProfileServices();
+    obj_main.renderHomeStrengths();
+});
 
-obj_main.renderCarousel();
-obj_main.render_Profile_Services();
+// 首次渲染
+obj_main.renderHeroStack();
+obj_main.resetTimer();
+obj_main.renderProfileServices();
+obj_main.renderHomeStrengths();

@@ -1,29 +1,45 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>我们的强项 - 深圳市西特新环保材料有限公司</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/font/phone.css">
 </head>
+
 <body>
   <main class="main-content">
-    <section class="strengths-section">
-      <!-- <h2 id="strengths-title" class="section-title">我们的强项</h2> -->
-      <ul id="strengths-list">
-        <li>专业的研发团队</li>
-        <li>高品质的产品保障</li>
-        <li>完善的售后服务</li>
-        <li>丰富的行业经验</li>
-      </ul>
-    </section>  
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-eyebrow" data-i18n="homeStrengthsEyebrow"></div>
+          <h2 class="section-title" data-i18n="strengthsTitle"></h2>
+        </div>
+        <ul class="strengths-grid" id="strengths-list"></ul>
+      </div>
+    </section>
   </main>
-  <script src="assets/js/data/lang.js"></script>
+
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <div>
+        <h3 data-i18n="ctaTitle"></h3>
+        <p data-i18n="ctaDesc"></p>
+      </div>
+      <a href="contact.html" class="btn btn-primary" data-i18n="ctaButton"></a>
+    </div>
+  </section>
+
   <script type="text/javascript">
-    pageName = 'strengths';
+    var pageName = 'strengths';
   </script>
+  <script src="assets/js/data/lang.js"></script>
   <script src="assets/js/lib/headerFooterDomGenerator.js"></script>
   <script src="assets/js/strength.js"></script>
 </body>
-</html> 
+
+</html>

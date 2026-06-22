@@ -1,77 +1,45 @@
-
+/**
+ * 联系我们 页面：渲染联系卡片
+ */
 var obj_contact = {};
 
+const SVG_STROKE = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"';
 
+const ICON_SVGS = {
+    phone: `<svg ${SVG_STROKE}><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>`,
+    mail:  `<svg ${SVG_STROKE}><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`,
+    pin:   `<svg ${SVG_STROKE}><path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10z"/><circle cx="12" cy="11" r="2.5"/></svg>`,
+    whatsapp: `<svg ${SVG_STROKE}><path d="M7.9 20A9 9 0 1 0 4 16.1L3 21l4.9-1z"/><path d="M8.5 13.5c.6 1.1 2.1 2.6 3.2 3.2l1.2-1.2c.2-.2.5-.3.8-.2.9.3 1.9.5 2.9.5.3 0 .6.3.6.6v1.7c0 .3-.2.5-.5.6-1 .2-2 .1-2.9-.2-.3-.1-.6 0-.8.2"/></svg>`
+};
 
-obj_contact.genContactInfo = (contactPhone, contactEmail, contactAddr) => `
-  <div><strong>${contactPhone}</strong>13724351021 / 0755-27782265</div>
-  <div><strong>${contactEmail}</strong>info@setra-ep.com</div>
-  <div><strong>${contactAddr}</strong>深圳市松岗镇江边工业一路9号</div>
-`;
-obj_contact.genContactCards = (langDatas) => `
-        <div class="contact-card">
-          <!-- <div class="contact-icon contact-icon-phone contact-icon-email contact-icon-address"><img src="assets/images/c/whatsapp-logo.svg"/></div> -->
-          <div class="contact-icon">&#128224;</div>
-          <div class="contact-label">${langDatas.contactPhoneLabel}</div>
-          <div class="contact-value">${langDatas.contactPhone}</div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon">&#128231;</div>
-          <div class="contact-label">${langDatas.contactEmailLabel}</div>
-          <div class="contact-value">${langDatas.contactEmail}</div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon contact-icon-whatsapp"></div>
-          <div class="contact-label">whatsApp</div>
-          <div class="contact-value">Link</div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon ">&#127979;</div>
-          <div class="contact-label">${langDatas.contactAddrLabel}</div>
-          <div class="contact-value">${langDatas.contactAddr}</div>
-        </div>
-      `;
+obj_contact.render = function () {
+    const grid = document.querySelector('.contact-grid');
+    if (!grid) return;
+    const d = obj_lang.getLangData();
 
-obj_contact.renderContactInfo = () => {
-    let langd = obj_lang.getLangData();
-    if (document.getElementById('contact-info')) {
-        const info = document.getElementById('contact-info');
-        info.innerHTML = obj_contact.genContactInfo(langd.contactPhone, langd.contactEmail, langd.contactAddr);
-    }
-    // 联系我们卡片
-    if (document.querySelector('.contact-section')) {
-        if (document.getElementById('contact-title')) document.getElementById('contact-title').textContent = langd.contactTitle;
-        const grid = document.querySelector('.contact-grid');
-        if (grid) {
-            grid.innerHTML = obj_contact.genContactCards(langd);
-        }
-        const desc = document.querySelector('.contact-desc');
-        if (desc) desc.textContent = langd.contactDesc;
-    }
-}
-obj_contact.genContactCards = (langDatas) => `
+    grid.innerHTML = `
         <div class="contact-card">
-          <!-- <div class="contact-icon contact-icon-phone contact-icon-email contact-icon-address"><img src="assets/images/c/whatsapp-logo.svg"/></div> -->
-          <div class="contact-icon">&#128224;</div>
-          <div class="contact-label">${langDatas.contactPhoneLabel}</div>
-          <div class="contact-value">${langDatas.contactPhone}</div>
+            <div class="contact-icon">${ICON_SVGS.phone}</div>
+            <div class="contact-label">${d.contactPhoneLabel}</div>
+            <div class="contact-value"><a href="tel:+8675527782265">${d.contactPhone}</a></div>
         </div>
         <div class="contact-card">
-          <div class="contact-icon">&#128231;</div>
-          <div class="contact-label">${langDatas.contactEmailLabel}</div>
-          <div class="contact-value">${langDatas.contactEmail}</div>
+            <div class="contact-icon">${ICON_SVGS.mail}</div>
+            <div class="contact-label">${d.contactEmailLabel}</div>
+            <div class="contact-value"><a href="mailto:info@setra-ep.com">${d.contactEmail}</a></div>
         </div>
         <div class="contact-card">
-          <div class="contact-icon contact-icon-whatsapp"></div>
-          <div class="contact-label">whatsApp</div>
-          <div class="contact-value">Link</div>
+            <div class="contact-icon">${ICON_SVGS.whatsapp}</div>
+            <div class="contact-label">${d.contactWhatsappLabel}</div>
+            <div class="contact-value"><a href="#" target="_blank" rel="noopener">${d.contactWhatsappValue}</a></div>
         </div>
         <div class="contact-card">
-          <div class="contact-icon ">&#127979;</div>
-          <div class="contact-label">${langDatas.contactAddrLabel}</div>
-          <div class="contact-value">${langDatas.contactAddr}</div>
+            <div class="contact-icon">${ICON_SVGS.pin}</div>
+            <div class="contact-label">${d.contactAddrLabel}</div>
+            <div class="contact-value">${d.contactAddr}</div>
         </div>
-      `;
+    `;
+};
 
-obj_contact.renderContactInfo();
-registerLangReRenderFunction('render_Contact', obj_contact.renderContactInfo);
+window.addEventListener('langchange', obj_contact.render);
+obj_contact.render();

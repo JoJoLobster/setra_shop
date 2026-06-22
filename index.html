@@ -1,55 +1,142 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>深圳市西特新环保材料有限公司</title>
+  <title>深圳市西特新环保材料有限公司 · 专业电镀添加剂研发与生产</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/font/phone.css">
 </head>
 
 <body>
-  
+  <!-- 首页 Hero -->
   <section id="carousel-section">
     <div id="carousel">
-      <!-- 轮播商品将由JS动态插入 -->
+      <div class="hero-text">
+        <div class="eyebrow" data-i18n="heroEyebrow.index"></div>
+        <h1 id="hero-title" data-i18n="heroTitle.index"></h1>
+        <p class="subtitle" data-i18n="heroSubtitle.index"></p>
+        <div class="hero-actions">
+          <a href="products.html" class="btn btn-primary" data-i18n="heroCtaProducts"></a>
+          <a href="contact.html" class="btn btn-outline" data-i18n="heroCtaContact"></a>
+        </div>
+        <div class="hero-dots" id="hero-dots"></div>
+      </div>
+      <div class="hero-image-stack" id="hero-image-stack">
+        <!-- 由 JS 注入 -->
+      </div>
     </div>
   </section>
+
   <main>
-    <section class="company-profile-section section-wrapper">
-      <h2 class="section-title">Company Profile</h2>
-      <div class="company-profile-content">
-        <p>We introduce ourselves as an export division of SETRA, who is the one of the leading manufacturer of dyes from ELECTROPLATING DYES, Biological stains, PH Indicators, Hair Colour, safranine series. Under well equiped plant with qualified chemists.</p>
-        <ul>
-          <li><strong>Year of Establishment:</strong> 2009</li>
-          <li><strong>Primary Business:</strong> The SETRA has been recognized in the field of Laboratory Chemicals since April 2009. During this period we had to persuade every customer for a quality product.</li>
-          <li><strong>Annual Turnover:</strong> Detailed quality products with over 100 products. The technical advancement of the cervical product specification has been achieved and we have made significant progress.</li>
-          <li><strong>Market Covered:</strong> During this period we had to persuade every customer for a quality product. As the business expanded in India and different countries, it was difficult to inform all customers about different products. After that, we decided to prepare a book from where our valued customers get information about our products.</li>
-        </ul>
+    <!-- 关于 -->
+    <section class="section section-alt">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div class="about-image">
+            <img src="assets/images/home/bg-4.jpg" alt="About SETRA">
+          </div>
+          <div>
+            <div class="section-eyebrow" data-i18n="homeAboutEyebrow"></div>
+            <h2 class="section-title" data-i18n="homeAboutTitle"></h2>
+            <p class="section-desc" data-i18n="homeAboutDesc"></p>
+            <div class="mt-3">
+              <a href="about.html" class="btn btn-dark" data-i18n="homeAboutMore"></a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="products-services-section section-wrapper">
-      <h2 class="section-title">Our Products & Services</h2>
-      <div class="products-services-content">
-        <ul>
-          <li>Electroplating Dyes</li>
-          <li>Biological Stains</li>
-          <li>PH Indicators</li>
-          <li>Hair Colour</li>
-          <li>Safranine Series</li>
-          <li>Laboratory Chemicals</li>
-        </ul>
-        
+    <!-- 产品分类卡片 -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-eyebrow" data-i18n="homeProductsEyebrow"></div>
+          <h2 class="section-title" data-i18n="homeProductsTitle"></h2>
+          <p class="section-desc" data-i18n="homeProductsDesc"></p>
+        </div>
+        <div class="products-services-section" style="background:transparent;box-shadow:none;padding:0;">
+          <div class="products-services-content">
+            <ul></ul>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <a href="products.html" class="btn btn-primary" data-i18n="homeProductsMore"></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 我们的强项 -->
+    <section class="section section-alt">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-eyebrow" data-i18n="homeStrengthsEyebrow"></div>
+          <h2 class="section-title" data-i18n="homeStrengthsTitle"></h2>
+        </div>
+        <ul class="strengths-grid" id="home-strengths-list"></ul>
+      </div>
+    </section>
+
+    <!-- 统计数据 -->
+    <section class="stats-section">
+      <div class="section-inner">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-num">16<span class="suffix" data-i18n="statYearsSuffix"></span></div>
+            <div class="stat-label" data-i18n="statYears"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">1000<span class="suffix" data-i18n="statClientsSuffix"></span></div>
+            <div class="stat-label" data-i18n="statClients"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">100<span class="suffix" data-i18n="statQualitySuffix"></span></div>
+            <div class="stat-label" data-i18n="statQuality"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">7<span class="suffix" data-i18n="statCountriesSuffix"></span></div>
+            <div class="stat-label" data-i18n="statCountries"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 公司简介 -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-head left">
+          <div class="section-eyebrow" data-i18n="homeAboutEyebrow"></div>
+          <h2 class="section-title" data-i18n="homeProfileTitle"></h2>
+        </div>
+        <div class="company-profile-section" style="background:transparent;box-shadow:none;padding:0;">
+          <div class="company-profile-content">
+            <p data-i18n="homeProfileContent"></p>
+            <ul></ul>
+          </div>
+        </div>
       </div>
     </section>
   </main>
-  <script src="assets/js/data/lang.js"></script>
+
+  <!-- CTA 横幅 -->
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <div>
+        <h3 data-i18n="ctaTitle"></h3>
+        <p data-i18n="ctaDesc"></p>
+      </div>
+      <a href="contact.html" class="btn btn-primary" data-i18n="ctaButton"></a>
+    </div>
+  </section>
 
   <script type="text/javascript">
-    pageName = 'index';
+    var pageName = 'index';
   </script>
+  <script src="assets/js/data/lang.js"></script>
   <script src="assets/js/lib/headerFooterDomGenerator.js"></script>
   <script src="assets/js/lib/util.js"></script>
   <script src="assets/js/main.js"></script>

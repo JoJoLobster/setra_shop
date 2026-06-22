@@ -1,28 +1,60 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>关于我们 - 深圳市西特新环保材料有限公司</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/font/phone.css">
 </head>
+
 <body>
   <main class="main-content">
-    <section class="about-section">
-      <!-- <h2 id="about-title" class="section-title">公司简介</h2> -->
-      <div id="about-desc">
-        <p>深圳市西特新环保材料有限公司是一家专注于化工新材料研发、生产与销售的高新技术企业，致力于为客户提供高品质的化工产品和专业的技术服务。</p>
-        
+    <section class="section">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div class="about-image">
+            <img src="assets/images/home/bg-2.jpg" alt="About SETRA">
+          </div>
+          <div>
+            <div class="section-eyebrow" data-i18n="homeAboutEyebrow"></div>
+            <h2 class="section-title" data-i18n="aboutTitle"></h2>
+            <div id="about-desc" data-i18n-html="aboutDesc"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-eyebrow" data-i18n="homeStrengthsEyebrow"></div>
+          <h2 class="section-title" data-i18n="strengthsTitle"></h2>
+        </div>
+        <ul class="strengths-grid" id="home-strengths-list"></ul>
       </div>
     </section>
   </main>
-  <script src="assets/js/data/lang.js"></script>
+
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <div>
+        <h3 data-i18n="ctaTitle"></h3>
+        <p data-i18n="ctaDesc"></p>
+      </div>
+      <a href="contact.html" class="btn btn-primary" data-i18n="ctaButton"></a>
+    </div>
+  </section>
+
   <script type="text/javascript">
-    pageName = 'about';
+    var pageName = 'about';
   </script>
-  <!-- <script src="assets/js/lib/finisher-header.es5.min.js" type="text/javascript"></script> -->
+  <script src="assets/js/data/lang.js"></script>
   <script src="assets/js/lib/headerFooterDomGenerator.js"></script>
   <script src="assets/js/about.js"></script>
 </body>
-</html> 
+
+</html>

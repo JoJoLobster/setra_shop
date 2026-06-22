@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系图标样式备选</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #0a2540;
+      --color-primary-mid: #143258;
+      --color-accent: #d4a437;
+      --color-accent-dark: #a87f1f;
+      --color-bg-soft: #eef2f8;
+      --color-border: #e3e8ef;
+      --color-text-muted: #7a8699;
+      --radius-lg: 14px;
+      --shadow: 0 6px 24px rgba(10, 37, 64, 0.10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', 'PingFang SC', sans-serif;
+      background: #f4f6fa;
+      color: var(--color-primary);
+      padding: 2rem 1.25rem 4rem;
+    }
+    h1 { text-align: center; font-size: 1.5rem; margin: 0 0 0.5rem; }
+    .subtitle { text-align: center; color: var(--color-text-muted); margin: 0 0 2.5rem; font-size: 0.95rem; }
+    .schemes { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.5rem; }
+    .scheme { background: #fff; border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--color-border); }
+    .scheme-head { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.35rem; flex-wrap: wrap; }
+    .scheme-head h2 { margin: 0; font-size: 1.1rem; }
+    .badge { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--color-bg-soft); color: var(--color-text-muted); }
+    .badge.rec { background: rgba(212,164,55,0.15); color: var(--color-accent-dark); }
+    .scheme-desc { margin: 0 0 1.25rem; color: var(--color-text-muted); font-size: 0.88rem; line-height: 1.5; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .card {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--color-accent); }
+    .label { color: var(--color-text-muted); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.35rem; }
+    .value { font-weight: 600; font-size: 0.92rem; }
+
+    /* A — 当前样式 */
+    .style-a .icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-mid));
+      color: var(--color-accent);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    /* B — 线性描边 + 圆角方形容器 */
+    .style-b .icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: var(--color-bg-soft);
+      border: 1.5px solid var(--color-border);
+      color: var(--color-primary);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .style-b svg { stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* C — 金色实心圆 + 白色图标 */
+    .style-c .icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--color-accent);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 14px rgba(212,164,55,0.35);
+    }
+
+    /* D — 无背景，大号金色图标 */
+    .style-d .icon {
+      width: auto; height: auto;
+      color: var(--color-accent);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.85rem;
+    }
+    .style-d svg { width: 36px; height: 36px; }
+
+    /* E — 左侧色条 + 横向卡片 */
+    .style-e .grid { grid-template-columns: 1fr; }
+    .style-e .card {
+      flex-direction: row; text-align: left; gap: 1rem; padding: 1.25rem 1.5rem;
+      align-items: center;
+    }
+    .style-e .icon {
+      width: 48px; height: 48px; flex-shrink: 0; border-radius: 10px;
+      background: var(--color-primary);
+      color: var(--color-accent);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0;
+    }
+    .style-e .card-body { min-width: 0; }
+    .style-e .label { margin-bottom: 0.15rem; }
+
+    /* F — 双线描边圆环 */
+    .style-f .icon {
+      width: 54px; height: 54px; border-radius: 50%;
+      background: transparent;
+      border: 2px solid var(--color-accent);
+      color: var(--color-accent);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .style-f svg { stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+</head>
+<body>
+  <h1>联系页图标 · 样式备选</h1>
+  <p class="subtitle">打开本页对比效果，选定后告知方案编号（A–F）即可应用到 contact 页面</p>
+
+  <div class="schemes">
+
+    <section class="scheme style-a">
+      <div class="scheme-head"><h2>方案 A</h2><span class="badge">当前样式</span></div>
+      <p class="scheme-desc">深蓝渐变圆底 + 金色实心图标。对比强但图标细节在 22px 下容易显得笨重。</p>
+      <div class="grid">
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M20 15.5c-1.2 0-2.5-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1C8.7 6.5 8.5 5.2 8.5 4c0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1z"/></svg></div><div class="label">电话</div><div class="value">0755-27782265</div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M22 6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6zm-2 0-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg></div><div class="label">邮箱</div><div class="value">info@setra-ep.com</div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div><div class="label">地址</div><div class="value">深圳市</div></div>
+      </div>
+    </section>
+
+    <section class="scheme style-b">
+      <div class="scheme-head"><h2>方案 B</h2><span class="badge rec">推荐</span></div>
+      <p class="scheme-desc">浅灰圆角方底 + 线性描边图标。更轻盈、现代，与整站 Inter 字体风格一致，小尺寸下更清晰。</p>
+      <div class="grid">
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div><div class="label">电话</div><div class="value">0755-27782265</div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div class="label">邮箱</div><div class="value">info@setra-ep.com</div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10z"/><circle cx="12" cy="11" r="2.5"/></svg></div><div class="label">地址</div><div class="value">深圳市</div></div>
+      </div>
+    </section>
+
+    <section class="scheme style-c">
+      <div class="scheme-head"><h2>方案 C</h2><span class="badge">品牌强调</span></div>
+      <p class="scheme-desc">金色实心圆 + 白色图标。强化品牌金色，视觉焦点明确，适合突出「联系我们」入口。</p>
+      <div class="grid">
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.1-.2 1 .5 2.1.9 3.2 1.1.4.1.7.4.7.8v3.2c0 .5-.4.9-.9 1A17 17 0 0 1 3 5.9c0-.5.4-.9.9-.9H7c.4 0 .8.3.9.7.2 1.1.6 2.2 1.1 3.2.2.3.1.8-.2 1.1L6.6 10.8z"/></svg></div><div class="label">电话</div><div class="value">0755-27782265</div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M4 6h16v12H4V6zm0-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4zm8 7.5L6 8v8l6-3.5 6 3.5V8l-6 3.5z"/></svg></div><div class="label">邮箱</div><div class="value">info@setra-ep.com</div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></div><div class="label">地址</div><div class="value">深圳市</div></div>
+      </div>
+    </section>
+
+    <section class="scheme style-d">
+      <div class="scheme-head"><h2>方案 D</h2><span class="badge">极简</span></div>
+      <p class="scheme-desc">去掉图标背景，仅保留大号金色图标。卡片更干净，信息层级更突出文字内容。</p>
+      <div class="grid">
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.1-.2 1 .5 2.1.9 3.2 1.1.4.1.7.4.7.8v3.2c0 .5-.4.9-.9 1A17 17 0 0 1 3 5.9c0-.5.4-.9.9-.9H7c.4 0 .8.3.9.7.2 1.1.6 2.2 1.1 3.2.2.3.1.8-.2 1.1L6.6 10.8z"/></svg></div><div class="label">电话</div><div class="value">0755-27782265</div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></div><div class="label">邮箱</div><div class="value">info@setra-ep.com</div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></div><div class="label">地址</div><div class="value">深圳市</div></div>
+      </div>
+    </section>
+
+    <section class="scheme style-e">
+      <div class="scheme-head"><h2>方案 E</h2><span class="badge">列表式</span></div>
+      <p class="scheme-desc">横向卡片布局，图标在左、文字在右。信息密度更高，适合移动端纵向滚动浏览。</p>
+      <div class="grid">
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.1-.2 1 .5 2.1.9 3.2 1.1.4.1.7.4.7.8v3.2c0 .5-.4.9-.9 1A17 17 0 0 1 3 5.9c0-.5.4-.9.9-.9H7c.4 0 .8.3.9.7.2 1.1.6 2.2 1.1 3.2.2.3.1.8-.2 1.1L6.6 10.8z"/></svg></div><div class="card-body"><div class="label">电话</div><div class="value">0755-27782265</div></div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></div><div class="card-body"><div class="label">邮箱</div><div class="value">info@setra-ep.com</div></div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></div><div class="card-body"><div class="label">地址</div><div class="value">深圳市</div></div></div>
+      </div>
+    </section>
+
+    <section class="scheme style-f">
+      <div class="scheme-head"><h2>方案 F</h2><span class="badge">轻奢线框</span></div>
+      <p class="scheme-desc">金色圆环 + 线性图标，呼应整站「深蓝 + 金色」调性，比实心圆更精致、不抢内容风头。</p>
+      <div class="grid">
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div><div class="label">电话</div><div class="value">0755-27782265</div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="20" height="20"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div class="label">邮箱</div><div class="value">info@setra-ep.com</div></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10z"/><circle cx="12" cy="11" r="2.5"/></svg></div><div class="label">地址</div><div class="value">深圳市</div></div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
