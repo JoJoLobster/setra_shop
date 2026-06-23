@@ -1062,20 +1062,30 @@ main {
     box-shadow: var(--shadow);
 }
 .contact-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 12px;
-    background: var(--color-bg-soft);
-    border: 1.5px solid var(--color-border);
-    color: var(--color-primary);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
     flex-shrink: 0;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
 }
 .contact-icon svg {
     flex-shrink: 0;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.contact-card:hover .contact-icon {
+    background: var(--color-accent);
+    color: #fff;
 }
 .contact-label {
     color: var(--color-text-muted);

@@ -4,11 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>联系我们 - 深圳市西特新环保材料有限公司</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260622170114">
   <style>
     .BMap_cpyCtrl
     {
@@ -44,19 +47,54 @@
   <script type="text/javascript">
     var pageName = 'contact';
   </script>
-  <script src="assets/js/data/lang.js"></script>
-  <script src="assets/js/lib/headerFooterDomGenerator.js"></script>
-  <script src="assets/js/contact.js"></script>
+  <script src="assets/js/data/lang.js?v=20260622170114"></script>
+  <script src="assets/js/lib/headerFooterDomGenerator.js?v=20260622170114"></script>
+  <script src="assets/js/contact.js?v=20260622170114"></script>
   <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=w3kWkfc6Xe3epBtrwBXMnHQW1R93h9N0&s=1"></script>
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', () => {
       if (typeof BMap === 'undefined') return;
       try {
         const map = new BMap.Map("map-container");
-        map.centerAndZoom(new BMap.Point(12670472.00, 2588048.00), 11);
-        const local = new BMap.LocalSearch(map, { renderOptions: { map: map } });
-        local.search("西特新环保材料有限公司");
-      } catch (e) { /* 地图加载失败时静默 */ }
+        map.enableScrollWheelZoom(true); 
+        // const local = new BMap.LocalSearch(map, {
+        //   renderOptions: { map: map }, 
+        //   pageCapacity: 1,
+        //   onSearchComplete: function(){
+        //     console.log("onSearchComplete", local.getResults());
+        //     // 搜索完成后执行的回调函数
+        //     if (local.getResults()) {
+        //         var poiList = local.getResults().ok; // 获取搜索结果列表
+        //         console.log("poiList", typeof poiList);
+        //         if (poiList.length > 0) {
+        //             map.clearOverlays();
+                    
+        //             // 只处理第一个点
+        //             var firstPoint = poiList[0].point; // 获取第一个点的坐标
+        //             console.log("firstPoint", firstPoint);
+        //             var marker = new BMap.Marker(firstPoint); // 创建标记
+        //             map.addOverlay(marker); // 将标记添加到地图上
+        //             map.centerAndZoom(firstPoint, 15); // 地图中心点移动到该点，并设置合适的缩放级别
+        //         }
+        //     }
+        //   }
+        // });
+        // local.search("西特新环保材料有限公司");
+
+        
+        //map.clearOverlays();
+                    
+        var firstPoint = new BMap.Point('113.8195649698512', '22.773968664050038');
+        var marker = new BMap.Marker(firstPoint); // 创建标记
+        map.addOverlay(marker); // 将标记添加到地图上
+        map.centerAndZoom(firstPoint, 21); // 地图中心点移动到该点，并设置合适的缩放级别
+
+
+        
+      } catch (e) { /* 地图加载失败时静默 */ 
+        console.log("error", e);
+
+      }
     });
   </script>
 </body>
